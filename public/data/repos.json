@@ -1,0 +1,62 @@
+[
+  {
+    "id": "stanford-lab/cvrp-deep-solver",
+    "name": "cvrp-deep-solver",
+    "desc": "A benchmark deep reinforcement learning simulation toolkit for solving large-scale CVRP instances.",
+    "lang": "Python",
+    "topics": [
+      "vehicle-routing",
+      "reinforcement-learning",
+      "simulation"
+    ],
+    "stars": 128,
+    "updated": "2024-05-10",
+    "score": 112.5,
+    "paper": true,
+    "edu": true,
+    "libs": [
+      "numpy",
+      "torch",
+      "ortools"
+    ],
+    "url": "https://github.com/stanford-lab/cvrp-deep-solver"
+  },
+  {
+    "id": "mit-or/discrete-event-platform",
+    "name": "discrete-event-platform",
+    "desc": "High-performance discrete-event simulation platform for supply chain and manufacturing operations research.",
+    "lang": "Rust",
+    "topics": [
+      "simulation",
+      "operations-research",
+      "discrete-event"
+    ],
+    "stars": 84,
+    "updated": "2024-04-22",
+    "score": 98.0,
+    "paper": true,
+    "edu": true,
+    "libs": [
+      "ndarray"
+    ],
+    "url": "https://github.com/mit-or/discrete-event-platform"
+  },
+  {
+    "id": "Mominyar/emergency-dispatch-simulation-system",
+    "name": "emergency-dispatch-simulation-system",
+    "desc": "A turn-based emergency response dispatch simulation designed for algorithmic evaluation and baseline comparison.",
+    "lang": "C",
+    "topics": [
+      "simulation",
+      "dispatch",
+      "c-programming"
+    ],
+    "stars": 15,
+    "updated": "2024-05-12",
+    "score": 85.5,
+    "paper": false,
+    "edu": true,
+    "libs": [],
+    "url": "https://github.com/Mominyar/emergency-dispatch-simulation-system"
+  }
+]
