@@ -13,11 +13,12 @@ import time
 
 import httpx
 
-from localllm_feed import extract
+from localllm_feed import extract, tldr
 from localllm_feed.config import CollectionConfig
 from localllm_feed.models import CandidateAuthor, ModelRecord
 
 HF_API_BASE = "https://huggingface.co/api"
+HF_RAW_BASE = "https://huggingface.co"
 _MAX_RETRIES = 3
 _BACKOFF_BASE = 1.5
 
@@ -63,6 +64,17 @@ class HuggingFaceClient:
         if last_exc is not None:
             raise last_exc
         raise RuntimeError(f"HF API request failed after {_MAX_RETRIES} retries: {path}")
+
+    def fetch_readme(self, model_id: str) -> str:
+        """モデルの README.md 本文を取得する。取得不能時は空文字を返す。"""
+        url = f"{HF_RAW_BASE}/{model_id}/raw/main/README.md"
+        try:
+            resp = self._client.get(url)
+            if resp.status_code == 200:
+                return resp.text
+        except (httpx.TimeoutException, httpx.TransportError):
+            return ""
+        return ""
 
     def close(self) -> None:
         self._client.close()
@@ -161,6 +173,23 @@ def summaries_to_records(summaries: list[HfModelSummary]) -> list[ModelRecord]:
         rec = _to_record(summary)
         if rec is not None:
             records.append(rec)
+    return records
+
+
+def enrich_with_tldr(
+    client: HuggingFaceClient, records: list[ModelRecord], limit: int
+) -> list[ModelRecord]:
+    """上位 limit 件の README を取得し TL;DR を付与する（LLF-DD-001 §2.4）。
+
+    records は日付降順である前提。limit 以下の件数だけ README を取得する。
+    取得・抽出に失敗したものは TL;DR 空のまま据え置く（収集全体は継続）。
+    """
+    if limit <= 0:
+        return records
+    for rec in records[:limit]:
+        readme = client.fetch_readme(rec.id)
+        if readme:
+            rec.tldr = tldr.extract_tldr(readme)
     return records
 
 

@@ -7,6 +7,7 @@ retention_days = 30       # フィード保持期間（日）。この日数を�
 max_records = 300         # models_feed.json に載せる最大件数
 min_downloads = 50        # 収集対象に含める DL 数の下限
 gguf_only = true          # gguf タグ/拡張子を持つものだけを対象にする
+tldr_fetch_limit = 120    # README を取得して TL;DR を付与する上位件数（0で無効）
 
 # 収集対象の信頼著者ホワイトリスト（追加・削除で収集対象を調整）
 authors = [

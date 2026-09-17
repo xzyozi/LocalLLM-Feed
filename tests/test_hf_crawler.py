@@ -6,6 +6,7 @@ import httpx
 
 from localllm_feed import hf_crawler
 from localllm_feed.config import CollectionConfig, PopularScanConfig
+from localllm_feed.models import ModelRecord
 
 
 def _client_with(responses: dict[tuple[str, str], list[dict]]) -> hf_crawler.HuggingFaceClient:
@@ -98,4 +99,54 @@ def test_scan_disabled_returns_empty() -> None:
     client = _client_with({})
     cfg = CollectionConfig(popular_scan=PopularScanConfig(enabled=False))
     assert hf_crawler.scan_popular_outside_whitelist(client, cfg) == []
+    client.close()
+
+
+def _readme_client(readme_by_id: dict[str, str]) -> hf_crawler.HuggingFaceClient:
+    """README 取得をモックするクライアント。URL 末尾の README.md に応答する。"""
+
+    def handler(request):
+        url = str(request.url)
+        for model_id, body in readme_by_id.items():
+            if f"/{model_id}/raw/main/README.md" in url:
+                return httpx.Response(200, text=body)
+        return httpx.Response(404, text="")
+
+    transport = httpx.MockTransport(handler)
+    inner = httpx.Client(transport=transport)
+    return hf_crawler.HuggingFaceClient(client=inner)
+
+
+def _rec(rec_id: str) -> ModelRecord:
+    return ModelRecord(id=rec_id, base=rec_id, author="a", date="2026-09-10", params_b=7.0)
+
+
+def test_enrich_with_tldr_fills_top_n() -> None:
+    records = [_rec("a/M1-7B-GGUF"), _rec("a/M2-7B-GGUF"), _rec("a/M3-7B-GGUF")]
+    readmes = {
+        "a/M1-7B-GGUF": "# M1\n\nFirst great model for chat.",
+        "a/M2-7B-GGUF": "# M2\n\nSecond model overview.",
+        "a/M3-7B-GGUF": "# M3\n\nThird model.",
+    }
+    client = _readme_client(readmes)
+    out = hf_crawler.enrich_with_tldr(client, records, limit=2)
+    assert "First great model" in out[0].tldr
+    assert "Second model overview" in out[1].tldr
+    assert out[2].tldr == ""  # limit=2 のため 3件目は据え置き
+    client.close()
+
+
+def test_enrich_with_tldr_limit_zero_noop() -> None:
+    records = [_rec("a/M1-7B-GGUF")]
+    client = _readme_client({"a/M1-7B-GGUF": "# M1\n\ntext"})
+    out = hf_crawler.enrich_with_tldr(client, records, limit=0)
+    assert out[0].tldr == ""
+    client.close()
+
+
+def test_enrich_with_tldr_missing_readme_kept_empty() -> None:
+    records = [_rec("a/NoReadme-7B-GGUF")]
+    client = _readme_client({})  # 404 を返す
+    out = hf_crawler.enrich_with_tldr(client, records, limit=5)
+    assert out[0].tldr == ""
     client.close()
