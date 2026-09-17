@@ -1,17 +1,26 @@
-# 【無効化中】旧 scholarrepo_finder 用のクロール&デプロイ。
-# 定期実行(schedule)と main への push トリガーを削除し、手動実行のみに制限。
-# 理由: 前プロジェクトの自動コミットが main を更新しコンフリクトを誘発するため。
-# LocalLLM Feed 実装フェーズで新パイプライン向けに全面刷新予定。
+# LocalLLM Feed: 収集パイプライン実行 & GitHub Pages デプロイ。
+# 毎日1回 GGUF モデルを収集して public/data を生成し、Pages へデプロイする。
+# ホワイトリスト外の人気配布者は Issue で通知する（LLF-DD-001 §3.3）。
 name: Crawl & Deploy to GitHub Pages
 
 on:
-  workflow_dispatch: # 手動実行のみ（自動トリガーは無効化）
+  schedule:
+    - cron: "0 21 * * *" # 毎日 21:00 UTC = JST 翌06:00
+  workflow_dispatch: # 手動実行トリガー
+  push:
+    branches:
+      - main
+    paths:
+      - "public/**"
+      - "src/**"
+      - "config/**"
+      - "pyproject.toml"
 
-# GitHub Pages へのデプロイ権限を設定
 permissions:
   contents: write
   pages: write
   id-token: write
+  issues: write
 
 concurrency:
   group: "pages"
@@ -36,21 +45,70 @@ jobs:
 
       - name: Install dependencies
         run: |
-          uv sync --frozen
+          uv pip install --system -e "."
 
-      - name: Run Pipeline (Crawl & Build Static Data)
+      - name: Run pipeline (crawl & build static data)
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
-          uv run python -m scholarrepo_finder.pipeline
+          python -m localllm_feed.pipeline
 
-      - name: Commit updated awesome_scholar_repos.md (if on main)
+      - name: Notify candidate authors via Issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = 'public/data/popular_candidates.json';
+            if (!fs.existsSync(path)) {
+              core.info('No candidates file; skipping notification.');
+              return;
+            }
+            const candidates = JSON.parse(fs.readFileSync(path, 'utf8'));
+            if (!Array.isArray(candidates) || candidates.length === 0) {
+              core.info('No candidate authors detected.');
+              return;
+            }
+            const label = 'gguf-candidate-author';
+            const existing = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: label,
+              per_page: 100,
+            });
+            const existingBodies = existing.data.map(i => i.body || '');
+            const fresh = candidates.filter(
+              c => !existingBodies.some(b => b.includes(c.author))
+            );
+            if (fresh.length === 0) {
+              core.info('All candidate authors already have open issues.');
+              return;
+            }
+            const lines = fresh.map(
+              c => `- **${c.author}** (downloads: ${c.downloads}) 例: [${c.sample_model_id}](https://huggingface.co/${c.sample_model_id})`
+            );
+            const body = [
+              'ホワイトリスト外で人気の高い GGUF 配布者を検出しました。',
+              '`config/collection.toml` の `[collection].authors` への追加を検討してください。',
+              '',
+              ...lines,
+            ].join('\n');
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `新しいGGUF配布者候補 (${new Date().toISOString().slice(0,10)})`,
+              body,
+              labels: [label],
+            });
+            core.info(`Created issue for ${fresh.length} candidate authors.`);
+
+      - name: Commit updated feed data (if on main)
         if: github.ref == 'refs/heads/main'
         run: |
           git config --local user.name "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/awesome_scholar_repos.md || true
-          git diff --quiet && git diff --staged --quiet || git commit -m "docs: 自動クロールによる awesome_scholar_repos.md の更新"
+          git add public/data/models_feed.json public/data/scoring.json || true
+          git diff --quiet && git diff --staged --quiet || git commit -m "[other] 自動収集による models_feed.json の更新"
           git push origin main || true
 
       - name: Setup Pages
