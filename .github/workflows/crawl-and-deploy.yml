@@ -1,18 +1,11 @@
+# 【無効化中】旧 scholarrepo_finder 用のクロール&デプロイ。
+# 定期実行(schedule)と main への push トリガーを削除し、手動実行のみに制限。
+# 理由: 前プロジェクトの自動コミットが main を更新しコンフリクトを誘発するため。
+# LocalLLM Feed 実装フェーズで新パイプライン向けに全面刷新予定。
 name: Crawl & Deploy to GitHub Pages
 
 on:
-  schedule:
-    - cron: "0 0 * * 1" # 毎週月曜 00:00 (UTC)
-  workflow_dispatch: # 手動実行トリガー
-  push:
-    branches:
-      - main
-    paths:
-      - "public/**"
-      - "src/**"
-      - "config/**"
-      - "pyproject.toml"
-      - "uv.lock"
+  workflow_dispatch: # 手動実行のみ（自動トリガーは無効化）
 
 # GitHub Pages へのデプロイ権限を設定
 permissions:
