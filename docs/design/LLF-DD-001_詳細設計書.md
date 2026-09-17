@@ -92,6 +92,8 @@ AND （downloads >= min_downloads）
 
 ### 2.4 TL;DR抽出ルール（生成AI不使用）
 
+収集した各モデルについて、`HuggingFaceCrawler` が `https://huggingface.co/{id}/raw/main/README.md` からモデルカード本文を取得し `TldrExtractor` に渡す。README 取得はネットワーク負荷を伴うため、`collection.toml` の `tldr_fetch_limit`（既定 120）で上位件数に制限する（日付降順・DL数を優先）。取得失敗（4xx/5xx/タイムアウト）時は当該モデルの TL;DR を空文字とし、収集全体は継続する（§3.4）。
+
 以下を上から順に試し、最初に取得できたものを1〜2文（最大200文字目安）に整形して採用する。取得不能なら空文字。
 
 1. モデルカード（README）先頭の見出し直後の最初の段落。
@@ -203,6 +205,7 @@ stateDiagram-v2
 - 基本設計 §2 のMermaidどおりのSPA。左サイドにVRAM/優先度設定とフィルタ、右に結果カード一覧。
 - `public/style.css`（旧プロジェクトから流用のスクロールバー等）を土台に、GGUF向けUIを再構築。
 - MiniSearch・スタイルはCDNまたはvendored。ビルド工程は持たない（ゼロインフラ方針）。
+- 各カードは次を表示する: モデル `id`（HFリンク）、`base`、パラメータ数と帯、蒸留バッジ、`downloads`（人気）、`date`（新しさ）、TL;DR 説明文、量子化は代表フォーマット（Q4_K_M / Q5_K_M / Q8_0 等）を強調し残りは「+N」で畳む、Total Score、推奨 `n_gpu_layers`。
 
 ---
 
