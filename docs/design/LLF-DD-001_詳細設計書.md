@@ -76,6 +76,7 @@ AND （downloads >= min_downloads）
 
 - HF APIの一覧取得は著者ごとに `author` + 期間でフィルタし、返却件数を抑える。
 - READMEの取得は上記フィルタ通過後のモデルに限定し、リクエスト数を `max_records` 相当に抑える。
+- 著者偏りを防ぐため、`collection.toml` の `per_author_limit`（既定 40）で著者ごとの採用件数に上限を設ける。各著者内で日付降順の上位を採用する。
 
 ### 2.3 ファクト抽出仕様
 
@@ -93,6 +94,13 @@ AND （downloads >= min_downloads）
 ### 2.4 TL;DR抽出ルール（生成AI不使用）
 
 収集した各モデルについて、`HuggingFaceCrawler` が `https://huggingface.co/{id}/raw/main/README.md` からモデルカード本文を取得し `TldrExtractor` に渡す。README 取得はネットワーク負荷を伴うため、`collection.toml` の `tldr_fetch_limit`（既定 120）で上位件数に制限する（日付降順・DL数を優先）。取得失敗（4xx/5xx/タイムアウト）時は当該モデルの TL;DR を空文字とし、収集全体は継続する（§3.4）。
+
+量子化配布者（mradermacher / bartowski 等）の README は「static quants of <URL>」「weighted/imatrix quants of <URL>」のような定型文で始まることが多い。この定型文はモデルの実質的な説明ではないため、次のルールで品質を高める。
+
+1. 抽出した TL;DR が定型文パターン（`(static|weighted|imatrix|quants of|GGUF quants) ...`）に該当する場合、その段落を捨てて README 内の次の意味ある段落を採用する。
+2. 定型文中に元モデルへのリンク（`of https://huggingface.co/{author}/{repo}`）が含まれる場合、元モデルの README を追加取得し、そこから TL;DR を抽出する（元モデルが実説明を持つため）。
+3. 元モデル取得も失敗、または意味ある段落が無い場合は TL;DR を空文字とする。
+4. TL;DR 整形時、素の URL（`https?://...`）を除去する。
 
 以下を上から順に試し、最初に取得できたものを1〜2文（最大200文字目安）に整形して採用する。取得不能なら空文字。
 
