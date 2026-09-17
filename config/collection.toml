@@ -1,0 +1,23 @@
+# LocalLLM Feed 収集設定（バックエンド / GitHub Actions が読み込む）。
+# 値の変更はコード変更不要。詳細は docs/design/LLF-DS-001 §2.3 を参照。
+schema_version = 1
+
+[collection]
+retention_days = 30       # フィード保持期間（日）。この日数を超えたレコードはパージ
+max_records = 300         # models_feed.json に載せる最大件数
+min_downloads = 50        # 収集対象に含める DL 数の下限
+gguf_only = true          # gguf タグ/拡張子を持つものだけを対象にする
+
+# 収集対象の信頼著者ホワイトリスト（追加・削除で収集対象を調整）
+authors = [
+  "bartowski",
+  "mradermacher",
+  "TheBloke",
+  "lmstudio-community",
+  "Qwen",
+]
+
+[popular_scan]
+enabled = true               # ホワイトリスト外の人気配布者検出を行うか
+notify_min_downloads = 1000  # 通知対象とする DL 数の下限
+scan_limit = 100             # gguf タグ全体を人気順で走査する上位件数
