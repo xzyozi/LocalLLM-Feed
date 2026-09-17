@@ -21,7 +21,13 @@ from localllm_feed.config import (
     DEFAULT_SCORING_PATH,
     load_collection_config,
 )
-from localllm_feed.feed_builder import build_feed, write_feed, write_json_atomic
+from localllm_feed.feed_builder import (
+    build_feed,
+    purge_expired,
+    sort_and_truncate,
+    write_feed,
+    write_json_atomic,
+)
 from localllm_feed.scoring_export import DEFAULT_SCORING_JSON, export_scoring_json
 
 FEED_OUTPUT = Path("public/data/models_feed.json")
@@ -42,9 +48,14 @@ def run(
     try:
         summaries = hf_crawler.crawl_models(client, config)
         records = hf_crawler.summaries_to_records(summaries)
+        # パージ→日付降順ソート→件数切り詰めの後、上位に README 由来の TL;DR を付与
+        records = purge_expired(records, config.retention_days)
+        records = sort_and_truncate(records, config.max_records)
+        records = hf_crawler.enrich_with_tldr(client, records, config.tldr_fetch_limit)
         feed = build_feed(records, config.retention_days, config.max_records)
         write_feed(feed_output, feed)
-        print(f"[feed] {feed.count} records -> {feed_output}")
+        tldr_count = sum(1 for m in feed.models if m.tldr)
+        print(f"[feed] {feed.count} records ({tldr_count} with TL;DR) -> {feed_output}")
 
         # スコアリング設定の JSON 化（フロント配信用）
         export_scoring_json(scoring_path, scoring_json)

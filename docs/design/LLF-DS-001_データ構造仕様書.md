@@ -158,6 +158,7 @@ retention_days = 30       # フィード保持期間（日）。この日数を�
 max_records = 300         # models_feed.json に載せる最大件数
 min_downloads = 50        # 収集対象に含めるDL数の下限
 gguf_only = true          # gguf タグ/拡張子を持つものだけを対象にする
+tldr_fetch_limit = 120    # README を取得して TL;DR を付与する上位件数（負荷制御）
 
 # 収集対象の信頼著者ホワイトリスト
 authors = [
@@ -181,6 +182,7 @@ scan_limit = 100             # gguf タグ全体を人気順で走査する上�
 | `collection.max_records`            | 数値       |  必須  | `300`        | 1以上。Actions負荷・配信サイズの上限制御。              |
 | `collection.min_downloads`          | 数値       |  必須  | `50`         | 0以上。ホワイトリスト内でもこの値未満は除外。           |
 | `collection.gguf_only`              | ブーリアン |  必須  | `true`       | GGUF以外を除外するフラグ。                              |
+| `collection.tldr_fetch_limit`       | 数値       |  任意  | `120`        | 0以上。README を取得し TL;DR を付与する上位件数。0で無効。 |
 | `collection.authors`                | 配列       |  必須  | 上記5件      | HFアカウント名の文字列配列。追加・削除で収集対象を調整。|
 | `popular_scan.enabled`              | ブーリアン |  任意  | `true`       | ホワイトリスト外人気配布者の検出可否。                  |
 | `popular_scan.notify_min_downloads` | 数値       |  任意  | `1000`       | 通知対象のDL下限。                                      |

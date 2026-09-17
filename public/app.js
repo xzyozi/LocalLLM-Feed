@@ -30,6 +30,9 @@ const DEFAULT_SCORING = {
   },
 };
 
+// カード上で強調表示する代表量子化フォーマット
+const HIGHLIGHT_QUANTS = ["Q4_K_M", "Q5_K_M", "Q8_0", "Q6_K"];
+
 let allModels = [];
 let scoring = DEFAULT_SCORING;
 let miniSearch = null;
@@ -181,9 +184,17 @@ function render() {
 
   for (const { model, score } of scored) {
     const layers = estimateGpuLayers(model, vram);
-    const quantBadges = (model.quants || [])
-      .map((q) => `<span class="text-xs text-slate-400 bg-slate-900/60 px-2 py-0.5 rounded border border-slate-800">${q}</span>`)
-      .join(" ");
+    const quants = model.quants || [];
+    const primary = quants.filter((q) => HIGHLIGHT_QUANTS.includes(q));
+    const shown = primary.length ? primary : quants.slice(0, 3);
+    const remain = quants.length - shown.length;
+    const quantBadges =
+      shown
+        .map((q) => `<span class="text-xs text-emerald-300 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">${q}</span>`)
+        .join(" ") +
+      (remain > 0
+        ? ` <span class="text-xs text-slate-400 bg-slate-900/60 px-2 py-0.5 rounded border border-slate-800">+${remain}</span>`
+        : "");
     const distill = model.is_distilled
       ? '<span class="px-2 py-0.5 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/20">蒸留</span>'
       : "";
@@ -198,7 +209,12 @@ function render() {
             <span class="px-2 py-0.5 rounded-full text-xs bg-slate-700 text-slate-300">${model.params_b}B</span>
             ${distill}
           </div>
-          <p class="text-xs text-slate-400 mt-1.5">${escapeHtml(model.tldr || "")}</p>
+          <p class="text-xs text-slate-300 mt-1.5 leading-relaxed">${escapeHtml(model.tldr || "説明文なし")}</p>
+          <div class="flex items-center gap-3 mt-1.5 text-xs text-slate-500">
+            <span>⬇ ${(model.downloads || 0).toLocaleString()}</span>
+            <span>📅 ${model.date || "-"}</span>
+            <span>👤 ${escapeHtml(model.author || "")}</span>
+          </div>
         </div>
         <div class="text-right flex-shrink-0">
           <div class="text-xs text-slate-400">Score</div>
