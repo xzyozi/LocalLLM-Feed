@@ -4,11 +4,14 @@
 
 [English](./README.md) | [日本語](./README.ja.md)
 
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live%20Demo-brightgreen?logo=github)](https://xzyozi.github.io/LocalLLM-Feed/)
 [![CI](https://github.com/xzyozi/LocalLLM-Feed/actions/workflows/ci.yml/badge.svg)](https://github.com/xzyozi/LocalLLM-Feed/actions/workflows/ci.yml)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
 LocalLLM Feed collects GGUF model activity from Hugging Face daily and helps you discover and deploy the models that best fit your hardware (VRAM) and use case (speed vs. accuracy) with minimal noise.
+
+🌐 **Live Demo**: https://xzyozi.github.io/LocalLLM-Feed/
 
 ## Features
 

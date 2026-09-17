@@ -4,6 +4,8 @@
 
 [English](./README.md) | [日本語](./README.ja.md)
 
+🌐 **公開サイト (Live Demo)**: https://xzyozi.github.io/LocalLLM-Feed/
+
 Hugging Face 上の GGUF モデル動向を毎日収集し、ユーザーのハードウェア環境（VRAM）とユースケース（速度/精度）に最適なモデルをノイズレスに発見・導入するための静的フィードプラットフォームです。
 
 ## 特徴
