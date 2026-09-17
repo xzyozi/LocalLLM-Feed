@@ -118,7 +118,8 @@ def _readme_client(readme_by_id: dict[str, str]) -> hf_crawler.HuggingFaceClient
 
 
 def _rec(rec_id: str) -> ModelRecord:
-    return ModelRecord(id=rec_id, base=rec_id, author="a", date="2026-09-10", params_b=7.0)
+    author = rec_id.split("/", 1)[0] if "/" in rec_id else "a"
+    return ModelRecord(id=rec_id, base=rec_id, author=author, date="2026-09-10", params_b=7.0)
 
 
 def test_enrich_with_tldr_fills_top_n() -> None:
@@ -149,4 +150,37 @@ def test_enrich_with_tldr_missing_readme_kept_empty() -> None:
     client = _readme_client({})  # 404 を返す
     out = hf_crawler.enrich_with_tldr(client, records, limit=5)
     assert out[0].tldr == ""
+    client.close()
+
+
+def test_apply_per_author_limit() -> None:
+    records = [
+        _rec("a/M1-7B-GGUF"),
+        _rec("a/M2-7B-GGUF"),
+        _rec("a/M3-7B-GGUF"),
+        _rec("b/N1-7B-GGUF"),
+    ]
+    out = hf_crawler.apply_per_author_limit(records, per_author_limit=2)
+    authors = [r.author for r in out]
+    assert authors.count("a") == 2
+    assert authors.count("b") == 1
+    assert len(out) == 3
+
+
+def test_apply_per_author_limit_zero_is_unlimited() -> None:
+    records = [_rec("a/M1-7B-GGUF"), _rec("a/M2-7B-GGUF")]
+    out = hf_crawler.apply_per_author_limit(records, per_author_limit=0)
+    assert len(out) == 2
+
+
+def test_enrich_uses_base_model_readme_on_boilerplate() -> None:
+    records = [_rec("mrad/Foo-7B-GGUF")]
+    readmes = {
+        "mrad/Foo-7B-GGUF": "# Foo\n\nstatic quants of https://huggingface.co/orig/Foo-7B",
+        "orig/Foo-7B": "# Foo-7B\n\nA fast multilingual model for chat.",
+    }
+    client = _readme_client(readmes)
+    out = hf_crawler.enrich_with_tldr(client, records, limit=5)
+    assert "multilingual model" in out[0].tldr
+    assert "static quants" not in out[0].tldr
     client.close()

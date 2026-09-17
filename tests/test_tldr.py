@@ -36,3 +36,32 @@ def test_strips_images_and_links() -> None:
     result = tldr.extract_tldr(readme)
     assert "http" not in result
     assert "docs" in result
+
+
+def test_skips_boilerplate_and_uses_next_paragraph() -> None:
+    readme = (
+        "# Model-7B-GGUF\n\n"
+        "static quants of https://huggingface.co/someone/Model-7B\n\n"
+        "A powerful reasoning model tuned for coding tasks."
+    )
+    result = tldr.extract_tldr(readme)
+    assert "static quants" not in result
+    assert "reasoning model" in result
+
+
+def test_bare_url_removed() -> None:
+    readme = "# T\n\nSee https://example.com/page for details about this model."
+    result = tldr.extract_tldr(readme)
+    assert "http" not in result
+    assert "details about this model" in result
+
+
+def test_extract_base_model_id() -> None:
+    readme = "# Q\n\nweighted/imatrix quants of https://huggingface.co/ManniX-ITA/Qwen3-27B\n"
+    assert tldr.extract_base_model_id(readme) == "ManniX-ITA/Qwen3-27B"
+    assert tldr.extract_base_model_id("# no link\n\ntext") == ""
+
+
+def test_is_boilerplate_readme() -> None:
+    assert tldr.is_boilerplate_readme("# M\n\nstatic quants of https://huggingface.co/a/b") is True
+    assert tldr.is_boilerplate_readme("# M\n\nA great model.") is False

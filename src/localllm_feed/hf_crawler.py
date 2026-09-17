@@ -176,18 +176,47 @@ def summaries_to_records(summaries: list[HfModelSummary]) -> list[ModelRecord]:
     return records
 
 
+def apply_per_author_limit(records: list[ModelRecord], per_author_limit: int) -> list[ModelRecord]:
+    """著者ごとの採用件数を per_author_limit 件に制限する（LLF-DD-001 §2.2）。
+
+    入力の並び順（日付降順を想定）を保ちつつ、各著者の先頭 per_author_limit 件を残す。
+    per_author_limit <= 0 の場合は無制限（そのまま返す）。
+    """
+    if per_author_limit <= 0:
+        return records
+    counts: dict[str, int] = {}
+    kept: list[ModelRecord] = []
+    for rec in records:
+        n = counts.get(rec.author, 0)
+        if n < per_author_limit:
+            kept.append(rec)
+            counts[rec.author] = n + 1
+    return kept
+
+
 def enrich_with_tldr(client: HuggingFaceClient, records: list[ModelRecord], limit: int) -> list[ModelRecord]:
     """上位 limit 件の README を取得し TL;DR を付与する（LLF-DD-001 §2.4）。
 
-    records は日付降順である前提。limit 以下の件数だけ README を取得する。
+    records は日付降順である前提。量子化配布者の定型文しか無い場合は、
+    元モデルの README を追加取得してそこから TL;DR を生成する。
     取得・抽出に失敗したものは TL;DR 空のまま据え置く（収集全体は継続）。
     """
     if limit <= 0:
         return records
     for rec in records[:limit]:
         readme = client.fetch_readme(rec.id)
-        if readme:
-            rec.tldr = tldr.extract_tldr(readme)
+        if not readme:
+            continue
+        if tldr.is_boilerplate_readme(readme):
+            base_id = tldr.extract_base_model_id(readme)
+            if base_id:
+                base_readme = client.fetch_readme(base_id)
+                if base_readme:
+                    text = tldr.extract_tldr(base_readme)
+                    if text:
+                        rec.tldr = text
+                        continue
+        rec.tldr = tldr.extract_tldr(readme)
     return records
 
 
