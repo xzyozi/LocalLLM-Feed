@@ -3,21 +3,18 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-# プロジェクト固有の情報（ここだけ書き換えればOK）
-name = "scholarrepo-finder"
+name = "localllm-feed"
 version = "0.1.0"
-description = "学術研究・アルゴリズム検証用OSS特化型検索モジュール"
+description = "ローカルLLM＆GGUF特化型 新着TL;DRフィード（収集・整形バックエンド）"
 readme = "README.md"
 requires-python = ">=3.11"
 
-# 必須のパッケージ
 dependencies = [
     "pydantic>=2.0.0",
     "httpx>=0.27.0"
 ]
 
 [project.optional-dependencies]
-# 開発・テスト環境専用のパッケージ（共通デファクトスタンダード）
 dev = [
     "pytest>=8.0.0",
     "ruff>=0.4.0",
@@ -34,12 +31,8 @@ exclude = [
     "__pycache__",
     "build",
     "dist",
-    "alembic",
-    "etc",
-    "old",
     "venv",
     ".venv",
-    "tests" # Exclude tests folder from linting for now, as it might have specific test patterns
 ]
 
 [tool.ruff.lint]
@@ -47,14 +40,8 @@ exclude = [
 select = ["E", "F", "W", "I"]
 ignore = []
 
-[tool.ruff.lint.per-file-ignores]
-"app/tool/__init__.py" = ["F401"]
-"run.py" = ["E402"]
-"tool/model_manager_gui.py" = ["E402"]
-
 [tool.ruff.lint.isort]
-# 自分のプロジェクトのパッケージ名を指定（自動ソート時にローカルパッケージとして認識させるため）
-known-first-party = ["scholarrepo_finder"]
+known-first-party = ["localllm_feed"]
 force-sort-within-sections = true
 
 # ==========================================
@@ -63,7 +50,6 @@ force-sort-within-sections = true
 [tool.mypy]
 python_version = "3.11"
 plugins = ["pydantic.mypy"]
-# 基本的に厳しめの設定（Strict）にしておくのがモダンな手法
 warn_unused_configs = true
 warn_redundant_casts = true
 warn_unused_ignores = true
@@ -73,26 +59,12 @@ disallow_incomplete_defs = true
 check_untyped_defs = true
 no_implicit_optional = true
 strict_optional = true
-# サードパーティ製ライブラリの型定義が見つからない際のエラーを抑制
 ignore_missing_imports = true
-# 元の mypy.ini ではカンマ区切りの単一文字列だったが、mypy の exclude は正規表現のため
-# 意図通りに機能させるには配列（各要素が正規表現）に変換するのが正しい書き方
 exclude = [
     "build/",
     "venv/",
     "\\.venv/",
-    "alembic/",
-    "etc/",
-    "old/"
 ]
-
-[[tool.mypy.overrides]]
-module = "app.tool.*"
-ignore_missing_imports = true
-
-[[tool.mypy.overrides]]
-module = "app.db.db_session_manager"
-ignore_errors = true
 
 # ==========================================
 # Testing (Pytest)

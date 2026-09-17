@@ -1,67 +1,63 @@
-# ScholarRepo-Finder 🔍📚
-> **Specialized Search & Discovery Engine for Academic Research and Algorithm Verification OSS (GitHub Pages & Markdown Export)**
+# LocalLLM Feed 🦙
+
+> **A daily TL;DR feed for local LLMs & GGUF models (GitHub Actions + GitHub Pages, zero infrastructure)**
 
 [English](./README.md) | [日本語](./README.ja.md)
 
-[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live%20Demo-brightgreen?logo=github)](https://xzyozi.github.io/ScholarRepo-Finder/)
-[![CI](https://github.com/xzyozi/ScholarRepo-Finder/actions/workflows/ci.yml/badge.svg)](https://github.com/xzyozi/ScholarRepo-Finder/actions/workflows/ci.yml)
+[![CI](https://github.com/xzyozi/LocalLLM-Feed/actions/workflows/ci.yml/badge.svg)](https://github.com/xzyozi/LocalLLM-Feed/actions/workflows/ci.yml)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
-🌐 **Live Demo Website**: [https://xzyozi.github.io/ScholarRepo-Finder/](https://xzyozi.github.io/ScholarRepo-Finder/)
+LocalLLM Feed collects GGUF model activity from Hugging Face daily and helps you discover and deploy the models that best fit your hardware (VRAM) and use case (speed vs. accuracy) with minimal noise.
 
-ScholarRepo-Finder is a static web platform that automatically discovers, rigorously evaluates, and indexes academic simulation and algorithm verification open-source software (OSS) from GitHub. It operates with **zero infrastructure, 100% free hosting via GitHub Pages, blazing-fast client-side search, and one-click Markdown export**.
+## Features
 
----
+- **Separation of facts and scoring**: the backend (GitHub Actions) extracts only facts such as parameter count, quantization formats, and distillation flag. Scoring is computed dynamically by the frontend (GitHub Pages).
+- **Client-side dynamic scoring**: Total Score is recomputed and sorted in the browser based on your VRAM setting (no database or API server).
+- **Export to your local environment**: one-click copy of Bash environment variables (with an auto-estimated `n_gpu_layers`) or an Ollama Modelfile for the selected model.
+- **Zero infrastructure**: runs entirely on GitHub Actions and Pages, with no running cost.
 
-## 🌟 Key Features
+## Architecture
 
-- **100% Serverless & Zero-Infra**: No external databases or always-on servers. Automated periodic crawling & indexing via GitHub Actions, statically hosted on GitHub Pages.
-- **Curated & Ultra-Lightweight**: Only high-scoring repositories (Score >= 60.0) are indexed, keeping data size within a few MBs for instant in-browser loading.
-- **Multi-Factor Academic Scoring**: A commentable TOML profile prioritizes reusable delivery forms, public APIs, module boundaries, usage documentation, and reproducible score evidence.
-- **Instant Client-Side Search**: In-memory search (MiniSearch) enables 0ms facet filtering by language, minimum score, and paper presence.
-- **One-Click Markdown Export**: Download filtered results as a Markdown summary table or copy individual repo citations directly to clipboard (ideal for Obsidian, Notion, and research notes).
-
----
-
-## 📐 Architecture
-
-```mermaid
-flowchart LR
-    A[GitHub / Papers with Code API] --> B[GitHub Actions Batch Ingestion]
-    B --> C[Feature Extraction & Scoring]
-    C --> D[Lightweight JSON Build]
-    D --> E[GitHub Pages Deployment]
-    E --> F[In-Browser MiniSearch UI]
-    F --> G[Markdown Export / Copy]
+```
+Hugging Face API
+      │ (once per day / GitHub Actions)
+      ▼
+Crawl (HuggingFaceCrawler) → TL;DR extraction (rule-based) → Feed build (FeedBuilder)
+      │
+      ▼
+public/data/models_feed.json  ──(GitHub Pages)──▶  Browser (dynamic scoring, search, export)
 ```
 
-For detailed design documentation:
-- 📘 [Basic Design Specification (SRF-BD-001)](./docs/design/SRF-BD-001_基本設計書.md)
-- 📊 [Data Structure & State Specification (SRF-DS-001)](./docs/design/SRF-DS-001_データ構造仕様書.md)
-- ⚙️ [Detailed Design Specification (SRF-DD-001)](./docs/design/SRF-DD-001_詳細設計書.md)
+See the design docs (in Japanese): [Basic Design](./docs/design/LLF-BD-001_基本設計書.md), [Detailed Design](./docs/design/LLF-DD-001_詳細設計書.md), [Data Structure](./docs/design/LLF-DS-001_データ構造仕様書.md), [Scoring Spec](./docs/design/LLF-SC-001_スコアリング設定仕様書.md).
 
----
+## Configuration
 
-## 🚀 Quick Start
+Collection conditions and scoring weights are adjustable via TOML in `config/` (no code changes required).
 
-### Prerequisites
-- Python 3.11+
-- [uv](https://github.com/astral-sh/uv) (Recommended)
+- `config/collection.toml`: author allowlist, retention period, download threshold, popular-author scan settings.
+- `config/scoring.toml`: per-VRAM-tier weights, quantization bonuses, `n_gpu_layers` estimation coefficients.
 
-### Development
+## Development
+
+This project uses [uv](https://docs.astral.sh/uv/).
+
 ```bash
-# Sync dependencies
-uv sync
+# Install dependencies
+uv pip install -e ".[dev]"
 
-# Run pipeline locally
-uv run python -m scholarrepo_finder.pipeline
+# Run the pipeline locally (accesses the HF API)
+python -m localllm_feed.pipeline
 
-# Run tests
+# Lint, type-check, and test
+uv run ruff check .
+uv run ruff format --check .
+uv run mypy .
 uv run pytest
 ```
 
----
+The generated `public/data/models_feed.json` is served via GitHub Pages.
 
-## 📄 License
-Released under the [MIT License](./LICENSE).
+## License
+
+[MIT](./LICENSE)

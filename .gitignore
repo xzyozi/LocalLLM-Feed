@@ -35,3 +35,7 @@ Thumbs.db
 
 # Kiro
 .kiro/
+# LocalLLM Feed のビルド生成物（CI が生成・デプロイartifactに含める）
+public/data/scoring.json
+public/data/popular_candidates.json
+public/data/*.tmp
