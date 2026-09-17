@@ -52,14 +52,14 @@ class HuggingFaceClient:
             try:
                 resp = self._client.get(path, params=params)
                 if resp.status_code == 429 or resp.status_code >= 500:
-                    time.sleep(_BACKOFF_BASE ** attempt)
+                    time.sleep(_BACKOFF_BASE**attempt)
                     continue
                 resp.raise_for_status()
                 data = resp.json()
                 return data if isinstance(data, list) else []
             except (httpx.TimeoutException, httpx.TransportError) as exc:
                 last_exc = exc
-                time.sleep(_BACKOFF_BASE ** attempt)
+                time.sleep(_BACKOFF_BASE**attempt)
         if last_exc is not None:
             raise last_exc
         raise RuntimeError(f"HF API request failed after {_MAX_RETRIES} retries: {path}")
@@ -122,9 +122,7 @@ def crawl_models(client: HuggingFaceClient, config: CollectionConfig) -> list[Hf
     return results
 
 
-def scan_popular_outside_whitelist(
-    client: HuggingFaceClient, config: CollectionConfig
-) -> list[CandidateAuthor]:
+def scan_popular_outside_whitelist(client: HuggingFaceClient, config: CollectionConfig) -> list[CandidateAuthor]:
     """gguf を人気順で走査し、ホワイトリスト外の高DL配布者を検出する。"""
     scan = config.popular_scan
     if not scan.enabled:

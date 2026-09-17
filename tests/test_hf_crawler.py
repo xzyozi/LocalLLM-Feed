@@ -24,10 +24,18 @@ def _client_with(responses: dict[tuple[str, str], list[dict]]) -> hf_crawler.Hug
 def test_crawl_models_applies_min_downloads() -> None:
     responses = {
         ("bartowski", "lastModified"): [
-            {"id": "bartowski/Foo-7B-GGUF", "downloads": 100, "lastModified": "2026-09-10T00:00:00Z",
-             "siblings": [{"rfilename": "Foo-Q4_K_M.gguf"}]},
-            {"id": "bartowski/Bar-13B-GGUF", "downloads": 5, "lastModified": "2026-09-11T00:00:00Z",
-             "siblings": [{"rfilename": "Bar-Q8_0.gguf"}]},
+            {
+                "id": "bartowski/Foo-7B-GGUF",
+                "downloads": 100,
+                "lastModified": "2026-09-10T00:00:00Z",
+                "siblings": [{"rfilename": "Foo-Q4_K_M.gguf"}],
+            },
+            {
+                "id": "bartowski/Bar-13B-GGUF",
+                "downloads": 5,
+                "lastModified": "2026-09-11T00:00:00Z",
+                "siblings": [{"rfilename": "Bar-Q8_0.gguf"}],
+            },
         ],
     }
     client = _client_with(responses)
