@@ -118,7 +118,8 @@ def _readme_client(readme_by_id: dict[str, str]) -> hf_crawler.HuggingFaceClient
 
 
 def _rec(rec_id: str) -> ModelRecord:
-    return ModelRecord(id=rec_id, base=rec_id, author="a", date="2026-09-10", params_b=7.0)
+    author = rec_id.split("/", 1)[0] if "/" in rec_id else "a"
+    return ModelRecord(id=rec_id, base=rec_id, author=author, date="2026-09-10", params_b=7.0)
 
 
 def test_enrich_with_tldr_fills_top_n() -> None:
