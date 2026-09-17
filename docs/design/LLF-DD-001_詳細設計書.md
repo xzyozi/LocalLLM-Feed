@@ -123,7 +123,7 @@ sequenceDiagram
     Crawl->>HF: 通過モデルのREADME取得
     HF-->>Crawl: モデルカード
     Crawl->>Tldr: READMEを渡す
-    Tldr-->>Crawl: TL;DR文字列
+    Tldr-->>Crawl: TLDR文字列
     Crawl->>Build: レコード配列
     Build->>Build: パージ + 件数切り詰め + 原子的書き出し
     Build-->>CI: models_feed.json 生成完了
