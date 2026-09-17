@@ -6,9 +6,9 @@ docs/design/LLF-DS-001 §2.3（収集）および LLF-SC-001 §2（スコアリ�
 
 from __future__ import annotations
 
-import tomllib
 from dataclasses import dataclass, field
 from pathlib import Path
+import tomllib
 
 DEFAULT_COLLECTION_PATH = Path("config/collection.toml")
 DEFAULT_SCORING_PATH = Path("config/scoring.toml")

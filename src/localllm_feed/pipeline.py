@@ -12,8 +12,8 @@ python -m localllm_feed.pipeline で実行する。
 from __future__ import annotations
 
 import os
-import sys
 from pathlib import Path
+import sys
 
 from localllm_feed import hf_crawler
 from localllm_feed.config import (

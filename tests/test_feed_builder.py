@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-import json
 from datetime import date
+import json
 from pathlib import Path
 
 from localllm_feed import feed_builder

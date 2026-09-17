@@ -6,9 +6,9 @@ LLF-DD-001 の FeedBuilder に対応する。
 
 from __future__ import annotations
 
+from datetime import date, datetime, timedelta, timezone
 import json
 import os
-from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 from localllm_feed.models import FEED_SCHEMA_VERSION, ModelRecord, ModelsFeed

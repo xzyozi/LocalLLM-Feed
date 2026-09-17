@@ -7,9 +7,9 @@ HF models API から GGUF モデルのファクトを取得し ModelRecord を�
 
 from __future__ import annotations
 
-import time
 from dataclasses import dataclass
 from datetime import datetime, timezone
+import time
 
 import httpx
 
