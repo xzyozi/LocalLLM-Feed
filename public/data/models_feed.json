@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-09-17T21:00:00Z",
+  "count": 3,
+  "models": [
+    {
+      "id": "bartowski/Command-R-35B-v0.1-GGUF",
+      "base": "Command-R-35B-v0.1",
+      "author": "bartowski",
+      "date": "2026-09-17",
+      "params_b": 35.0,
+      "is_distilled": false,
+      "quants": ["Q4_K_M", "Q5_K_M", "Q8_0"],
+      "downloads": 1240,
+      "tldr": "高度なRAGとツール呼び出しに特化した35Bモデル。"
+    },
+    {
+      "id": "bartowski/Qwen2.5-7B-Instruct-GGUF",
+      "base": "Qwen2.5-7B-Instruct",
+      "author": "bartowski",
+      "date": "2026-09-16",
+      "params_b": 7.0,
+      "is_distilled": false,
+      "quants": ["Q4_K_M", "Q6_K", "Q8_0"],
+      "downloads": 5300,
+      "tldr": "汎用性能の高いQwen2.5系7B。日常タスクに扱いやすいサイズ。"
+    },
+    {
+      "id": "bartowski/DeepSeek-R1-Distill-Qwen-14B-GGUF",
+      "base": "DeepSeek-R1-Distill-Qwen-14B",
+      "author": "bartowski",
+      "date": "2026-09-15",
+      "params_b": 14.0,
+      "is_distilled": true,
+      "quants": ["Q4_K_M", "Q5_K_M"],
+      "downloads": 3100,
+      "tldr": "推論を蒸留した14Bモデル。サイズ対性能比が高く速度優先向き。"
+    }
+  ]
+}
