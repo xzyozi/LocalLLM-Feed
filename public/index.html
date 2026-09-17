@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LocalLLM Feed 🦙 | ローカルLLM＆GGUF 新着TL;DRフィード</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/minisearch@7.1.1/dist/umd/index.min.js"></script>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col font-sans">
+
+  <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-cyan-600 flex items-center justify-center text-xl">🦙</div>
+        <div>
+          <h1 class="text-lg font-bold bg-gradient-to-r from-emerald-400 to-cyan-300 bg-clip-text text-transparent">LocalLLM Feed</h1>
+          <p class="text-xs text-slate-400">ローカルLLM＆GGUF特化型 新着TL;DRフィード</p>
+        </div>
+      </div>
+      <div class="text-xs text-slate-400">
+        更新: <span id="generatedAt" class="text-slate-200 font-semibold">-</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full flex flex-col md:flex-row gap-8">
+
+    <aside class="w-full md:w-72 flex-shrink-0 space-y-6">
+      <div class="bg-slate-800/60 p-4 rounded-2xl border border-slate-800 space-y-3">
+        <label class="text-xs font-semibold text-slate-400 uppercase tracking-wider">キーワード検索</label>
+        <input type="text" id="searchInput" placeholder="例: qwen, command-r, Q4_K_M..."
+          class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500">
+      </div>
+
+      <div class="bg-slate-800/60 p-5 rounded-2xl border border-slate-800 space-y-5">
+        <h2 class="text-sm font-bold text-slate-200 border-b border-slate-700/60 pb-3">環境設定</h2>
+
+        <div class="space-y-2">
+          <label class="text-xs font-medium text-slate-400">VRAM 容量</label>
+          <select id="vramSelect" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm">
+            <option value="8">8 GB</option>
+            <option value="12">12 GB</option>
+            <option value="16" selected>16 GB</option>
+            <option value="24">24 GB</option>
+            <option value="32">32 GB+</option>
+          </select>
+        </div>
+
+        <div class="space-y-2">
+          <label class="text-xs font-medium text-slate-400">優先度</label>
+          <select id="prioritySelect" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm">
+            <option value="speed">速度優先</option>
+            <option value="accuracy" selected>精度優先</option>
+          </select>
+        </div>
+
+        <label class="flex items-center space-x-2.5 cursor-pointer text-sm text-slate-300">
+          <input type="checkbox" id="distilledOnly" class="w-4 h-4 rounded bg-slate-900 border-slate-700">
+          <span>蒸留モデルのみ</span>
+        </label>
+      </div>
+
+      <div class="bg-slate-800/40 p-4 rounded-2xl border border-slate-800/80 text-xs text-slate-400 space-y-1.5">
+        <div class="flex justify-between"><span>登録モデル総数:</span><span id="totalCount" class="font-bold text-slate-200">0</span></div>
+        <div class="flex justify-between"><span>表示中:</span><span id="shownCount" class="font-bold text-emerald-400">0</span></div>
+      </div>
+    </aside>
+
+    <section class="flex-1 flex flex-col space-y-4 min-w-0">
+      <div id="modelList" class="space-y-4"></div>
+      <div id="emptyState" class="hidden py-16 text-center space-y-3 bg-slate-800/20 rounded-2xl border border-dashed border-slate-800">
+        <div class="text-4xl">🔍</div>
+        <p class="text-base font-semibold text-slate-300">該当するモデルが見つかりませんでした</p>
+        <p class="text-xs text-slate-500">検索条件やVRAM設定を変えてお試しください。</p>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="fixed bottom-6 right-6 bg-emerald-600 text-white text-xs font-semibold px-4 py-2.5 rounded-xl shadow-xl transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none z-50">
+    <span id="toastMsg">コピーしました</span>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
