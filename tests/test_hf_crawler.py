@@ -105,7 +105,7 @@ def test_scan_disabled_returns_empty() -> None:
 def _readme_client(readme_by_id: dict[str, str]) -> hf_crawler.HuggingFaceClient:
     """README 取得をモックするクライアント。URL 末尾の README.md に応答する。"""
 
-    def handler(request):
+    def handler(request: httpx.Request) -> httpx.Response:
         url = str(request.url)
         for model_id, body in readme_by_id.items():
             if f"/{model_id}/raw/main/README.md" in url:
