@@ -150,3 +150,36 @@ def test_enrich_with_tldr_missing_readme_kept_empty() -> None:
     out = hf_crawler.enrich_with_tldr(client, records, limit=5)
     assert out[0].tldr == ""
     client.close()
+
+
+def test_apply_per_author_limit() -> None:
+    records = [
+        _rec("a/M1-7B-GGUF"),
+        _rec("a/M2-7B-GGUF"),
+        _rec("a/M3-7B-GGUF"),
+        _rec("b/N1-7B-GGUF"),
+    ]
+    out = hf_crawler.apply_per_author_limit(records, per_author_limit=2)
+    authors = [r.author for r in out]
+    assert authors.count("a") == 2
+    assert authors.count("b") == 1
+    assert len(out) == 3
+
+
+def test_apply_per_author_limit_zero_is_unlimited() -> None:
+    records = [_rec("a/M1-7B-GGUF"), _rec("a/M2-7B-GGUF")]
+    out = hf_crawler.apply_per_author_limit(records, per_author_limit=0)
+    assert len(out) == 2
+
+
+def test_enrich_uses_base_model_readme_on_boilerplate() -> None:
+    records = [_rec("mrad/Foo-7B-GGUF")]
+    readmes = {
+        "mrad/Foo-7B-GGUF": "# Foo\n\nstatic quants of https://huggingface.co/orig/Foo-7B",
+        "orig/Foo-7B": "# Foo-7B\n\nA fast multilingual model for chat.",
+    }
+    client = _readme_client(readmes)
+    out = hf_crawler.enrich_with_tldr(client, records, limit=5)
+    assert "multilingual model" in out[0].tldr
+    assert "static quants" not in out[0].tldr
+    client.close()

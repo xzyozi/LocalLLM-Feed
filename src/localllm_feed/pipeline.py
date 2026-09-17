@@ -48,8 +48,10 @@ def run(
     try:
         summaries = hf_crawler.crawl_models(client, config)
         records = hf_crawler.summaries_to_records(summaries)
-        # パージ→日付降順ソート→件数切り詰めの後、上位に README 由来の TL;DR を付与
+        # パージ→日付降順ソート→著者上限→件数切り詰めの後、上位に README 由来の TL;DR を付与
         records = purge_expired(records, config.retention_days)
+        records = sort_and_truncate(records, -1)  # ソートのみ（切り詰めは著者上限後）
+        records = hf_crawler.apply_per_author_limit(records, config.per_author_limit)
         records = sort_and_truncate(records, config.max_records)
         records = hf_crawler.enrich_with_tldr(client, records, config.tldr_fetch_limit)
         feed = build_feed(records, config.retention_days, config.max_records)

@@ -32,6 +32,7 @@ class CollectionConfig:
     min_downloads: int = 50
     gguf_only: bool = True
     tldr_fetch_limit: int = 120
+    per_author_limit: int = 40
     authors: tuple[str, ...] = ()
     popular_scan: PopularScanConfig = field(default_factory=PopularScanConfig)
 
@@ -51,6 +52,7 @@ def load_collection_config(path: Path | str = DEFAULT_COLLECTION_PATH) -> Collec
         min_downloads=int(collection.get("min_downloads", 50)),
         gguf_only=bool(collection.get("gguf_only", True)),
         tldr_fetch_limit=int(collection.get("tldr_fetch_limit", 120)),
+        per_author_limit=int(collection.get("per_author_limit", 40)),
         authors=tuple(collection.get("authors", ())),
         popular_scan=PopularScanConfig(
             enabled=bool(scan.get("enabled", True)),
