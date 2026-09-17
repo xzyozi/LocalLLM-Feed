@@ -176,9 +176,7 @@ def summaries_to_records(summaries: list[HfModelSummary]) -> list[ModelRecord]:
     return records
 
 
-def enrich_with_tldr(
-    client: HuggingFaceClient, records: list[ModelRecord], limit: int
-) -> list[ModelRecord]:
+def enrich_with_tldr(client: HuggingFaceClient, records: list[ModelRecord], limit: int) -> list[ModelRecord]:
     """上位 limit 件の README を取得し TL;DR を付与する（LLF-DD-001 §2.4）。
 
     records は日付降順である前提。limit 以下の件数だけ README を取得する。
