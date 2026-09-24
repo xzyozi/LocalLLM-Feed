@@ -87,6 +87,8 @@ function scoreModel(model, vramGb, priority) {
 }
 
 // --- オフロード算出（LLF-SC-001 §4） ---
+// モデルサイズは Q4系(bytes_per_param_q4=0.5) を基準にした概算。ユーザーが Q8 等を
+// 選ぶ場合は必要VRAMを過小評価しうるため、UI側で「Q4基準の概算」と注記する。
 function estimateGpuLayers(model, vramGb) {
   const o = scoring.offload;
   const modelSize = model.params_b * o.bytes_per_param_q4;
@@ -225,7 +227,7 @@ function render() {
         ${quantBadges}
       </div>
       <div class="flex items-center justify-between text-xs text-slate-400">
-        <span>推奨 n_gpu_layers: <span class="text-slate-200 font-semibold">${layers}</span> (VRAM ${vram}GB)</span>
+        <span title="Q4系(約0.5GB/B)を基準にした概算値です。実際に選ぶ量子化により必要VRAMは変動します。">推奨 n_gpu_layers: <span class="text-slate-200 font-semibold">${layers}</span> (VRAM ${vram}GB, Q4基準の概算)</span>
         <div class="space-x-2">
           <button onclick="copyBash('${model.id}')" class="px-2.5 py-1 rounded bg-slate-700/60 hover:bg-slate-700">Bash</button>
           <button onclick="copyModelfile('${model.id}')" class="px-2.5 py-1 rounded bg-slate-700/60 hover:bg-slate-700">Modelfile</button>
