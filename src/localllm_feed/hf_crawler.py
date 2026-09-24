@@ -21,6 +21,8 @@ HF_API_BASE = "https://huggingface.co/api"
 HF_RAW_BASE = "https://huggingface.co"
 _MAX_RETRIES = 3
 _BACKOFF_BASE = 1.5
+# README 連続取得時のレート制御間隔（秒）。HF のスロットリング(429)を避けるための目安。
+_README_FETCH_INTERVAL = 0.2
 
 
 @dataclass(frozen=True)
@@ -198,19 +200,29 @@ def enrich_with_tldr(client: HuggingFaceClient, records: list[ModelRecord], limi
     """上位 limit 件の README を取得し TL;DR を付与する（LLF-DD-001 §2.4）。
 
     records は日付降順である前提。量子化配布者の定型文しか無い場合は、
-    元モデルの README を追加取得してそこから TL;DR を生成する。
+    元モデルの README を追加取得してそこから TL;DR を生成する。定型文が多いと
+    追加取得で総リクエスト数が最大 2 倍になりうるため、README 取得ごとに
+    `_README_FETCH_INTERVAL` の間隔を空けて HF のスロットリング(429)を避ける。
     取得・抽出に失敗したものは TL;DR 空のまま据え置く（収集全体は継続）。
+
+    Args:
+        client: HF クライアント。
+        records: TL;DR を付与する対象（日付降順を想定）。
+        limit: README を取得する上位件数。0 以下なら何もしない。
+
+    Returns:
+        TL;DR を可能な範囲で付与したレコードリスト（入力を破壊的に更新して返す）。
     """
     if limit <= 0:
         return records
     for rec in records[:limit]:
-        readme = client.fetch_readme(rec.id)
+        readme = _throttled_fetch_readme(client, rec.id)
         if not readme:
             continue
         if tldr.is_boilerplate_readme(readme):
             base_id = tldr.extract_base_model_id(readme)
             if base_id:
-                base_readme = client.fetch_readme(base_id)
+                base_readme = _throttled_fetch_readme(client, base_id)
                 if base_readme:
                     text = tldr.extract_tldr(base_readme)
                     if text:
@@ -218,6 +230,14 @@ def enrich_with_tldr(client: HuggingFaceClient, records: list[ModelRecord], limi
                         continue
         rec.tldr = tldr.extract_tldr(readme)
     return records
+
+
+def _throttled_fetch_readme(client: HuggingFaceClient, model_id: str) -> str:
+    """README を取得し、後続リクエストとの間隔を空ける（レート制御）。"""
+    readme = client.fetch_readme(model_id)
+    if _README_FETCH_INTERVAL > 0:
+        time.sleep(_README_FETCH_INTERVAL)
+    return readme
 
 
 def _iso_to_date(value: str) -> str:

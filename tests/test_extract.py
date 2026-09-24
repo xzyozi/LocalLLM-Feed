@@ -15,6 +15,12 @@ def test_extract_params_b_picks_max() -> None:
     assert extract.extract_params_b("mix-7B-to-13B") == 13.0
 
 
+def test_extract_params_b_moe_uses_expert_size() -> None:
+    # MoE 表記はエキスパート数ではなく各エキスパートのパラメータ数を名目値とする
+    assert extract.extract_params_b("Mixtral-8x7B-Instruct-GGUF") == 7.0
+    assert extract.extract_params_b("Mixtral-8x22B") == 22.0
+
+
 def test_extract_params_b_none_when_absent() -> None:
     assert extract.extract_params_b("SomeModel-GGUF") is None
     assert extract.extract_params_b("") is None
@@ -28,6 +34,12 @@ def test_extract_quants_dedup_and_order() -> None:
         "model-IQ4_XS.gguf",
     ]
     assert extract.extract_quants(files) == ["Q4_K_M", "Q8_0", "IQ4_XS"]
+
+
+def test_extract_quants_ignores_non_gguf() -> None:
+    # 非 GGUF ファイル名（config-Q4.json 等）は量子化として拾わない
+    files = ["config-Q4.json", "README.md", "model-Q5_K_M.gguf"]
+    assert extract.extract_quants(files) == ["Q5_K_M"]
 
 
 def test_is_distilled() -> None:

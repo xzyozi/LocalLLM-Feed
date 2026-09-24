@@ -26,12 +26,44 @@ def purge_expired(records: list[ModelRecord], retention_days: int, today: date |
     return kept
 
 
+def sort_by_date(records: list[ModelRecord]) -> list[ModelRecord]:
+    """日付降順（新しい順）にソートした新しいリストを返す。
+
+    Args:
+        records: 並べ替え対象のレコード群。
+
+    Returns:
+        date の降順に並べ替えたリスト（入力は変更しない）。
+    """
+    return sorted(records, key=lambda r: r.date, reverse=True)
+
+
+def truncate(records: list[ModelRecord], max_records: int) -> list[ModelRecord]:
+    """先頭 max_records 件へ切り詰める。
+
+    Args:
+        records: 切り詰め対象のレコード群。
+        max_records: 残す最大件数。負値なら切り詰めない（全件返す）。
+
+    Returns:
+        先頭 max_records 件のリスト。max_records が負なら入力と同じ内容。
+    """
+    if max_records < 0:
+        return list(records)
+    return records[:max_records]
+
+
 def sort_and_truncate(records: list[ModelRecord], max_records: int) -> list[ModelRecord]:
-    """日付降順（新しい順）にソートし、max_records 件へ切り詰める。"""
-    ordered = sorted(records, key=lambda r: r.date, reverse=True)
-    if max_records >= 0:
-        return ordered[:max_records]
-    return ordered
+    """日付降順にソートし max_records 件へ切り詰める（sort_by_date + truncate の合成）。
+
+    Args:
+        records: 対象レコード群。
+        max_records: 残す最大件数。負値なら切り詰めない。
+
+    Returns:
+        整形済みのレコードリスト。
+    """
+    return truncate(sort_by_date(records), max_records)
 
 
 def build_feed(
