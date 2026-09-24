@@ -10,6 +10,9 @@ import re
 
 # 例: "-35B-", "_7b", "3.8B" などのパラメータ数表記を検出する
 _PARAMS_RE = re.compile(r"(\d+(?:\.\d+)?)\s*[bB](?![a-zA-Z])")
+# MoE 表記（例: "8x7B", "8X22B"）。エキスパート数 x 各エキスパートのパラメータ数。
+# 名目値としては後段（各エキスパートのB数）を採用する（VRAM 概算の一貫性のため）。
+_MOE_RE = re.compile(r"(\d+)\s*[xX]\s*(\d+(?:\.\d+)?)\s*[bB](?![a-zA-Z])")
 # 量子化サフィックス（GGUF 慣例）。例: Q4_K_M, Q5_K_S, Q8_0, Q6_K, IQ4_XS
 _QUANT_RE = re.compile(r"\b((?:IQ|Q)\d+(?:_[A-Z0-9]+)*)\b", re.IGNORECASE)
 _DISTILL_RE = re.compile(r"distill", re.IGNORECASE)
@@ -18,11 +21,25 @@ _BASE_STRIP_RE = re.compile(r"[-_.]?(gguf|ggml)$", re.IGNORECASE)
 
 
 def extract_params_b(name: str) -> float | None:
-    """モデル名からパラメータ数（十億単位）を抽出する。
+    """モデル名からパラメータ数（十億単位、名目値）を抽出する。
 
-    複数該当時は最大値を採用する。抽出不能なら None。
+    MoE 表記（例: "Mixtral-8x7B"）は各エキスパートのパラメータ数（7）を
+    名目値として採用する。総実効パラメータではなく名目値を返すのは、
+    フロントの VRAM 概算が単一の代表パラメータ数を前提とするため。
+    通常表記が複数該当する場合は最大値を採用する。抽出不能なら None。
+
+    Args:
+        name: モデル名またはリポジトリ名。
+
+    Returns:
+        パラメータ数（十億単位）の名目値。抽出できなければ None。
     """
-    matches = _PARAMS_RE.findall(name or "")
+    text = name or ""
+    # MoE 表記を優先的に処理し、エキスパート数（"8x" の 8）を誤って拾わないようにする。
+    moe = _MOE_RE.search(text)
+    if moe:
+        return float(moe.group(2))
+    matches = _PARAMS_RE.findall(text)
     if not matches:
         return None
     values = [float(m) for m in matches]
