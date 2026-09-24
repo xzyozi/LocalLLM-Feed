@@ -36,6 +36,12 @@ def test_extract_quants_dedup_and_order() -> None:
     assert extract.extract_quants(files) == ["Q4_K_M", "Q8_0", "IQ4_XS"]
 
 
+def test_extract_quants_ignores_non_gguf() -> None:
+    # 非 GGUF ファイル名（config-Q4.json 等）は量子化として拾わない
+    files = ["config-Q4.json", "README.md", "model-Q5_K_M.gguf"]
+    assert extract.extract_quants(files) == ["Q5_K_M"]
+
+
 def test_is_distilled() -> None:
     assert extract.is_distilled("DeepSeek-R1-Distill-Qwen-7B") is True
     assert extract.is_distilled("Qwen2-7B", tags=["distillation"]) is True

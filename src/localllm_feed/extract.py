@@ -47,10 +47,22 @@ def extract_params_b(name: str) -> float | None:
 
 
 def extract_quants(file_names: list[str]) -> list[str]:
-    """GGUF ファイル名一覧から量子化フォーマットを列挙する（重複排除・出現順）。"""
+    """GGUF ファイル名一覧から量子化フォーマットを列挙する（重複排除・出現順）。
+
+    量子化サフィックスは `.gguf` ファイルだけから抽出する。`config-Q4.json` の
+    ような非 GGUF ファイル名を量子化として誤検出しないための絞り込み。
+
+    Args:
+        file_names: リポジトリ内のファイル名一覧。
+
+    Returns:
+        出現順・重複排除済みの量子化フォーマット文字列のリスト。
+    """
     seen: dict[str, None] = {}
     for fname in file_names:
-        for m in _QUANT_RE.findall(fname or ""):
+        if not (fname or "").lower().endswith(".gguf"):
+            continue
+        for m in _QUANT_RE.findall(fname):
             token = m.upper()
             if token not in seen:
                 seen[token] = None
