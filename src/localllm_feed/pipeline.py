@@ -24,7 +24,8 @@ from localllm_feed.config import (
 from localllm_feed.feed_builder import (
     build_feed,
     purge_expired,
-    sort_and_truncate,
+    sort_by_date,
+    truncate,
     write_feed,
     write_json_atomic,
 )
@@ -48,12 +49,15 @@ def run(
     try:
         summaries = hf_crawler.crawl_models(client, config)
         records = hf_crawler.summaries_to_records(summaries)
-        # パージ→日付降順ソート→著者上限→件数切り詰めの後、上位に README 由来の TL;DR を付与
+        # 整形順序: パージ → 日付降順ソート → 著者上限 → 件数切り詰め → TL;DR 付与。
+        # TL;DR は最終的にフィードへ載る上位レコードにだけ付与したいので、
+        # 著者上限・件数切り詰めで対象を確定させてから enrich する。
         records = purge_expired(records, config.retention_days)
-        records = sort_and_truncate(records, -1)  # ソートのみ（切り詰めは著者上限後）
+        records = sort_by_date(records)  # 著者上限の前に日付降順へ整える（切り詰めはしない）
         records = hf_crawler.apply_per_author_limit(records, config.per_author_limit)
-        records = sort_and_truncate(records, config.max_records)
+        records = truncate(records, config.max_records)
         records = hf_crawler.enrich_with_tldr(client, records, config.tldr_fetch_limit)
+        # build_feed 内でも purge/sort/truncate を行うが、ここで整形済みのため冪等（保険）。
         feed = build_feed(records, config.retention_days, config.max_records)
         write_feed(feed_output, feed)
         tldr_count = sum(1 for m in feed.models if m.tldr)
