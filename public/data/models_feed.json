@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-14T01:23:56Z",
-  "count": 86,
+  "generated_at": "2026-11-15T00:56:58Z",
+  "count": 84,
   "models": [
     {
-      "id": "mradermacher/UnifiedReward-qwen-3b-GGUF",
-      "base": "UnifiedReward-qwen-3b",
+      "id": "mradermacher/Dungeonmaster-V2.2-Expanded-LLaMa-70B-GGUF",
+      "base": "Dungeonmaster-V2.2-Expanded-LLaMa-70B",
       "author": "mradermacher",
-      "date": "2026-11-14",
-      "params_b": 3.0,
+      "date": "2026-11-15",
+      "params_b": 70.0,
       "is_distilled": false,
       "quants": [
         "IQ4_XS",
@@ -19,66 +19,106 @@
         "Q4_K_M",
         "Q4_K_S",
         "Q5_K_M",
-        "Q5_K_S",
-        "Q6_K",
-        "Q8_0"
+        "Q5_K_S"
       ],
-      "downloads": 137,
+      "downloads": 62,
       "tldr": "static quants of"
     },
     {
-      "id": "mradermacher/Holo1-3B-GGUF",
-      "base": "Holo1-3B",
+      "id": "mradermacher/DeepSeek-R1-Distill-Qwen-14B-Blunt-Uncensored-Blunt-GGUF",
+      "base": "DeepSeek-R1-Distill-Qwen-14B-Blunt-Uncensored-Blunt",
       "author": "mradermacher",
       "date": "2026-11-14",
-      "params_b": 3.0,
-      "is_distilled": false,
-      "quants": [
-        "IQ4_XS",
-        "Q2_K",
-        "Q3_K_L",
-        "Q3_K_M",
-        "Q3_K_S",
-        "Q4_K_M",
-        "Q4_K_S",
-        "Q5_K_M",
-        "Q5_K_S",
-        "Q6_K",
-        "Q8_0"
-      ],
-      "downloads": 322,
-      "tldr": "static quants of"
-    },
-    {
-      "id": "mradermacher/Qwen2.5-QwQ-RP-Draft-v0.1-0.5B-GGUF",
-      "base": "Qwen2.5-QwQ-RP-Draft-v0.1-0.5B",
-      "author": "mradermacher",
-      "date": "2026-11-14",
-      "params_b": 0.5,
-      "is_distilled": false,
-      "quants": [
-        "IQ4_XS",
-        "Q2_K",
-        "Q3_K_L",
-        "Q3_K_M",
-        "Q3_K_S",
-        "Q4_K_M",
-        "Q4_K_S",
-        "Q5_K_M",
-        "Q5_K_S",
-        "Q6_K",
-        "Q8_0"
-      ],
-      "downloads": 186,
-      "tldr": "static quants of"
-    },
-    {
-      "id": "mradermacher/Decka-4B-i1-GGUF",
-      "base": "Decka-4B-i1",
-      "author": "mradermacher",
-      "date": "2026-11-14",
-      "params_b": 4.0,
+      "params_b": 14.0,
       "is_distilled": true,
+      "quants": [
+        "IQ4_XS",
+        "Q2_K",
+        "Q3_K_L",
+        "Q3_K_M",
+        "Q3_K_S",
+        "Q4_K_M",
+        "Q4_K_S",
+        "Q5_K_M",
+        "Q5_K_S",
+        "Q6_K",
+        "Q8_0"
+      ],
+      "downloads": 171,
+      "tldr": "static quants of"
+    },
+    {
+      "id": "mradermacher/mistral-nemo-storywriter-12b-241015-GGUF",
+      "base": "mistral-nemo-storywriter-12b-241015",
+      "author": "mradermacher",
+      "date": "2026-11-14",
+      "params_b": 12.0,
+      "is_distilled": false,
+      "quants": [
+        "IQ4_XS",
+        "Q2_K",
+        "Q3_K_L",
+        "Q3_K_M",
+        "Q3_K_S",
+        "Q4_K_M",
+        "Q4_K_S",
+        "Q5_K_M",
+        "Q5_K_S",
+        "Q6_K",
+        "Q8_0"
+      ],
+      "downloads": 219,
+      "tldr": "static quants of"
+    },
+    {
+      "id": "mradermacher/72B-Qwen2.5-Kunou-v1-GGUF",
+      "base": "72B-Qwen2.5-Kunou-v1",
+      "author": "mradermacher",
+      "date": "2026-11-14",
+      "params_b": 72.0,
+      "is_distilled": false,
+      "quants": [
+        "IQ4_XS",
+        "Q2_K",
+        "Q3_K_L",
+        "Q3_K_M",
+        "Q3_K_S",
+        "Q4_K_M",
+        "Q4_K_S"
+      ],
+      "downloads": 109,
+      "tldr": "static quants of"
+    },
+    {
+      "id": "mradermacher/Gemma-2-Llama-Swallow-27b-pt-v0.1-GGUF",
+      "base": "Gemma-2-Llama-Swallow-27b-pt-v0.1",
+      "author": "mradermacher",
+      "date": "2026-11-14",
+      "params_b": 27.0,
+      "is_distilled": false,
+      "quants": [
+        "IQ4_XS",
+        "Q2_K",
+        "Q3_K_L",
+        "Q3_K_M",
+        "Q3_K_S",
+        "Q4_K_M",
+        "Q4_K_S",
+        "Q5_K_M",
+        "Q5_K_S",
+        "Q6_K",
+        "Q8_0"
+      ],
+      "downloads": 96,
+      "tldr": "static quants of"
+    },
+    {
+      "id": "mradermacher/jais-adapted-13b-i1-GGUF",
+      "base": "jais-adapted-13b-i1",
+      "author": "mradermacher",
+      "date": "2026-11-14",
+      "params_b": 13.0,
+      "is_distilled": false,
       "quants": [
         "IQ1_M",
         "IQ1_S",
@@ -105,60 +145,14 @@
         "Q5_K_S",
         "Q6_K"
       ],
-      "downloads": 2887,
+      "downloads": 591,
       "tldr": "weighted/imatrix quants of"
     },
     {
-      "id": "mradermacher/llemma_34b-GGUF",
-      "base": "llemma_34b",
+      "id": "mradermacher/HerLlama-7B-slerp-GGUF",
+      "base": "HerLlama-7B-slerp",
       "author": "mradermacher",
-      "date": "2026-11-13",
-      "params_b": 34.0,
-      "is_distilled": false,
-      "quants": [
-        "IQ4_XS",
-        "Q2_K",
-        "Q3_K_L",
-        "Q3_K_M",
-        "Q3_K_S",
-        "Q4_K_M",
-        "Q4_K_S",
-        "Q5_K_M",
-        "Q5_K_S",
-        "Q6_K",
-        "Q8_0"
-      ],
-      "downloads": 220,
-      "tldr": "static quants of"
-    },
-    {
-      "id": "mradermacher/gemma-3-27b-pt-transplant-GGUF",
-      "base": "gemma-3-27b-pt-transplant",
-      "author": "mradermacher",
-      "date": "2026-11-13",
-      "params_b": 27.0,
-      "is_distilled": false,
-      "quants": [
-        "IQ4_XS",
-        "Q2_K",
-        "Q3_K_L",
-        "Q3_K_M",
-        "Q3_K_S",
-        "Q4_K_M",
-        "Q4_K_S",
-        "Q5_K_M",
-        "Q5_K_S",
-        "Q6_K",
-        "Q8_0"
-      ],
-      "downloads": 195,
-      "tldr": "static quants of"
-    },
-    {
-      "id": "mradermacher/RoboBrain2.0-7B-GGUF",
-      "base": "RoboBrain2.0-7B",
-      "author": "mradermacher",
-      "date": "2026-11-13",
+      "date": "2026-11-14",
       "params_b": 7.0,
       "is_distilled": false,
       "quants": [
@@ -174,15 +168,291 @@
         "Q6_K",
         "Q8_0"
       ],
-      "downloads": 273,
+      "downloads": 314,
       "tldr": "static quants of"
     },
     {
-      "id": "mradermacher/EcomGen-Gemma3-4B-GGUF",
-      "base": "EcomGen-Gemma3-4B",
+      "id": "mradermacher/Gemma-3-Gaia-PT-BR-4b-it-GGUF",
+      "base": "Gemma-3-Gaia-PT-BR-4b-it",
       "author": "mradermacher",
-      "date": "2026-11-13",
+      "date": "2026-11-14",
       "params_b": 4.0,
+      "is_distilled": false,
+      "quants": [
+        "IQ4_XS",
+        "Q2_K",
+        "Q3_K_L",
+        "Q3_K_M",
+        "Q3_K_S",
+        "Q4_K_M",
+        "Q4_K_S",
+        "Q5_K_M",
+        "Q5_K_S",
+        "Q6_K",
+        "Q8_0"
+      ],
+      "downloads": 302,
+      "tldr": "static quants of"
+    },
+    {
+      "id": "mradermacher/FastBrain-9B-GGUF",
+      "base": "FastBrain-9B",
+      "author": "mradermacher",
+      "date": "2026-11-14",
+      "params_b": 9.0,
+      "is_distilled": false,
+      "quants": [
+        "IQ4_XS",
+        "Q2_K",
+        "Q3_K_L",
+        "Q3_K_M",
+        "Q3_K_S",
+        "Q4_K_M",
+        "Q4_K_S",
+        "Q5_K_M",
+        "Q5_K_S",
+        "Q6_K",
+        "Q8_0"
+      ],
+      "downloads": 1278,
+      "tldr": "static quants of"
+    },
+    {
+      "id": "mradermacher/rank1-mistral-2501-24b-GGUF",
+      "base": "rank1-mistral-2501-24b",
+      "author": "mradermacher",
+      "date": "2026-11-14",
+      "params_b": 24.0,
+      "is_distilled": false,
+      "quants": [
+        "IQ4_XS",
+        "Q2_K",
+        "Q3_K_L",
+        "Q3_K_M",
+        "Q3_K_S",
+        "Q4_K_M",
+        "Q4_K_S",
+        "Q5_K_M",
+        "Q5_K_S",
+        "Q6_K",
+        "Q8_0"
+      ],
+      "downloads": 98,
+      "tldr": "static quants of"
+    },
+    {
+      "id": "mradermacher/ReasoningCore-3B-Instruct-r01-Reflect-Math-GGUF",
+      "base": "ReasoningCore-3B-Instruct-r01-Reflect-Math",
+      "author": "mradermacher",
+      "date": "2026-11-14",
+      "params_b": 3.0,
+      "is_distilled": false,
+      "quants": [
+        "IQ4_XS",
+        "Q2_K",
+        "Q3_K_L",
+        "Q3_K_M",
+        "Q3_K_S",
+        "Q4_K_M",
+        "Q4_K_S",
+        "Q5_K_M",
+        "Q5_K_S",
+        "Q6_K",
+        "Q8_0"
+      ],
+      "downloads": 106,
+      "tldr": "static quants of"
+    },
+    {
+      "id": "mradermacher/Labadain-Gemma-4-E3B-it-Tetun-GGUF",
+      "base": "Labadain-Gemma-4-E3B-it-Tetun",
+      "author": "mradermacher",
+      "date": "2026-11-14",
+      "params_b": 3.0,
+      "is_distilled": false,
+      "quants": [
+        "IQ4_XS",
+        "Q2_K",
+        "Q3_K_L",
+        "Q3_K_M",
+        "Q3_K_S",
+        "Q4_K_M",
+        "Q4_K_S",
+        "Q5_K_M",
+        "Q5_K_S",
+        "Q6_K",
+        "Q8_0"
+      ],
+      "downloads": 964,
+      "tldr": "static quants of"
+    },
+    {
+      "id": "mradermacher/DeepThought-MOE-8X3B-R1-Llama-3.2-Reasoning-18B-GGUF",
+      "base": "DeepThought-MOE-8X3B-R1-Llama-3.2-Reasoning-18B",
+      "author": "mradermacher",
+      "date": "2026-11-14",
+      "params_b": 3.0,
+      "is_distilled": false,
+      "quants": [
+        "IQ4_XS",
+        "Q2_K",
+        "Q3_K_L",
+        "Q3_K_M",
+        "Q3_K_S",
+        "Q4_K_M",
+        "Q4_K_S",
+        "Q5_K_M",
+        "Q5_K_S",
+        "Q6_K",
+        "Q8_0"
+      ],
+      "downloads": 170,
+      "tldr": "static quants of"
+    },
+    {
+      "id": "mradermacher/QwOwO-1.5B-GGUF",
+      "base": "QwOwO-1.5B",
+      "author": "mradermacher",
+      "date": "2026-11-14",
+      "params_b": 1.5,
+      "is_distilled": false,
+      "quants": [
+        "IQ4_XS",
+        "Q2_K",
+        "Q3_K_L",
+        "Q3_K_M",
+        "Q3_K_S",
+        "Q4_K_M",
+        "Q4_K_S",
+        "Q5_K_M",
+        "Q5_K_S",
+        "Q6_K",
+        "Q8_0"
+      ],
+      "downloads": 134,
+      "tldr": "static quants of"
+    },
+    {
+      "id": "mradermacher/C4.1-Broken-Tutu-24B-GGUF",
+      "base": "C4.1-Broken-Tutu-24B",
+      "author": "mradermacher",
+      "date": "2026-11-14",
+      "params_b": 24.0,
+      "is_distilled": false,
+      "quants": [
+        "IQ4_XS",
+        "Q2_K",
+        "Q3_K_L",
+        "Q3_K_M",
+        "Q3_K_S",
+        "Q4_K_M",
+        "Q4_K_S",
+        "Q5_K_M",
+        "Q5_K_S",
+        "Q6_K",
+        "Q8_0"
+      ],
+      "downloads": 84,
+      "tldr": "static quants of"
+    },
+    {
+      "id": "mradermacher/KangalKhan-DesolatingRuby-7B-GGUF",
+      "base": "KangalKhan-DesolatingRuby-7B",
+      "author": "mradermacher",
+      "date": "2026-11-14",
+      "params_b": 7.0,
+      "is_distilled": false,
+      "quants": [
+        "IQ4_XS",
+        "Q2_K",
+        "Q3_K_L",
+        "Q3_K_M",
+        "Q3_K_S",
+        "Q4_K_M",
+        "Q4_K_S",
+        "Q5_K_M",
+        "Q5_K_S",
+        "Q6_K",
+        "Q8_0"
+      ],
+      "downloads": 93,
+      "tldr": "static quants of"
+    },
+    {
+      "id": "mradermacher/Changeling-v1.0-24b-GGUF",
+      "base": "Changeling-v1.0-24b",
+      "author": "mradermacher",
+      "date": "2026-11-14",
+      "params_b": 24.0,
+      "is_distilled": false,
+      "quants": [
+        "IQ4_XS",
+        "Q2_K",
+        "Q3_K_L",
+        "Q3_K_M",
+        "Q3_K_S",
+        "Q4_K_M",
+        "Q4_K_S",
+        "Q5_K_M",
+        "Q5_K_S",
+        "Q6_K",
+        "Q8_0"
+      ],
+      "downloads": 75,
+      "tldr": "static quants of"
+    },
+    {
+      "id": "mradermacher/Llama-3.2-1B-Instruct-commonsense_qa-GGUF",
+      "base": "Llama-3.2-1B-Instruct-commonsense_qa",
+      "author": "mradermacher",
+      "date": "2026-11-14",
+      "params_b": 1.0,
+      "is_distilled": false,
+      "quants": [
+        "IQ4_XS",
+        "Q2_K",
+        "Q3_K_L",
+        "Q3_K_M",
+        "Q3_K_S",
+        "Q4_K_M",
+        "Q4_K_S",
+        "Q5_K_M",
+        "Q5_K_S",
+        "Q6_K",
+        "Q8_0"
+      ],
+      "downloads": 117,
+      "tldr": "static quants of"
+    },
+    {
+      "id": "mradermacher/docscopeOCR-7B-050425-exp-GGUF",
+      "base": "docscopeOCR-7B-050425-exp",
+      "author": "mradermacher",
+      "date": "2026-11-14",
+      "params_b": 7.0,
+      "is_distilled": false,
+      "quants": [
+        "IQ4_XS",
+        "Q2_K",
+        "Q3_K_L",
+        "Q3_K_M",
+        "Q3_K_S",
+        "Q4_K_M",
+        "Q4_K_S",
+        "Q5_K_M",
+        "Q5_K_S",
+        "Q6_K",
+        "Q8_0"
+      ],
+      "downloads": 381,
+      "tldr": "static quants of"
+    },
+    {
+      "id": "mradermacher/airophin-v2-13b-PI-8k-fp16-GGUF",
+      "base": "airophin-v2-13b-PI-8k-fp16",
+      "author": "mradermacher",
+      "date": "2026-11-14",
+      "params_b": 13.0,
       "is_distilled": false,
       "quants": [
         "IQ4_XS",
@@ -201,10 +471,33 @@
       "tldr": "static quants of"
     },
     {
-      "id": "mradermacher/bluemoonrp-13b-GGUF",
-      "base": "bluemoonrp-13b",
+      "id": "mradermacher/Magnum-1b-v1-GGUF",
+      "base": "Magnum-1b-v1",
       "author": "mradermacher",
-      "date": "2026-11-13",
+      "date": "2026-11-14",
+      "params_b": 1.0,
+      "is_distilled": false,
+      "quants": [
+        "IQ4_XS",
+        "Q2_K",
+        "Q3_K_L",
+        "Q3_K_M",
+        "Q3_K_S",
+        "Q4_K_M",
+        "Q4_K_S",
+        "Q5_K_M",
+        "Q5_K_S",
+        "Q6_K",
+        "Q8_0"
+      ],
+      "downloads": 218,
+      "tldr": "static quants of"
+    },
+    {
+      "id": "mradermacher/finance-LLM-13B-GGUF",
+      "base": "finance-LLM-13B",
+      "author": "mradermacher",
+      "date": "2026-11-14",
       "params_b": 13.0,
       "is_distilled": false,
       "quants": [
@@ -220,578 +513,14 @@
         "Q6_K",
         "Q8_0"
       ],
-      "downloads": 91,
+      "downloads": 247,
       "tldr": "static quants of"
     },
     {
-      "id": "mradermacher/Llama_3.x_70b_SmarTricks_V1.01-GGUF",
-      "base": "Llama_3.x_70b_SmarTricks_V1.01",
+      "id": "mradermacher/dolphin-2.7-yayi2-30b-GGUF",
+      "base": "dolphin-2.7-yayi2-30b",
       "author": "mradermacher",
-      "date": "2026-11-13",
-      "params_b": 70.0,
-      "is_distilled": false,
-      "quants": [
-        "IQ4_XS",
-        "Q2_K",
-        "Q3_K_L",
-        "Q3_K_M",
-        "Q3_K_S",
-        "Q4_K_M",
-        "Q4_K_S",
-        "Q5_K_M",
-        "Q5_K_S"
-      ],
-      "downloads": 83,
-      "tldr": "static quants of"
-    },
-    {
-      "id": "mradermacher/Qwen2-7B-Instruct-it-v1.1-GGUF",
-      "base": "Qwen2-7B-Instruct-it-v1.1",
-      "author": "mradermacher",
-      "date": "2026-11-13",
-      "params_b": 7.0,
-      "is_distilled": false,
-      "quants": [
-        "IQ4_XS",
-        "Q2_K",
-        "Q3_K_L",
-        "Q3_K_M",
-        "Q3_K_S",
-        "Q4_K_M",
-        "Q4_K_S",
-        "Q5_K_M",
-        "Q5_K_S",
-        "Q6_K",
-        "Q8_0"
-      ],
-      "downloads": 196,
-      "tldr": "static quants of"
-    },
-    {
-      "id": "mradermacher/gemma-4-26b-a4b-heretic-GGUF",
-      "base": "gemma-4-26b-a4b-heretic",
-      "author": "mradermacher",
-      "date": "2026-11-13",
-      "params_b": 26.0,
-      "is_distilled": false,
-      "quants": [
-        "IQ4_XS",
-        "Q2_K",
-        "Q3_K_L",
-        "Q3_K_M",
-        "Q3_K_S",
-        "Q4_K_M",
-        "Q4_K_S",
-        "Q5_K_M",
-        "Q5_K_S",
-        "Q6_K",
-        "Q8_0"
-      ],
-      "downloads": 5439,
-      "tldr": "static quants of"
-    },
-    {
-      "id": "mradermacher/Verfy-9B-GGUF",
-      "base": "Verfy-9B",
-      "author": "mradermacher",
-      "date": "2026-11-13",
-      "params_b": 9.0,
-      "is_distilled": false,
-      "quants": [
-        "IQ4_XS",
-        "Q2_K",
-        "Q3_K_L",
-        "Q3_K_M",
-        "Q3_K_S",
-        "Q4_K_M",
-        "Q4_K_S",
-        "Q5_K_M",
-        "Q5_K_S",
-        "Q6_K",
-        "Q8_0"
-      ],
-      "downloads": 607,
-      "tldr": "static quants of"
-    },
-    {
-      "id": "mradermacher/Decka-4B-GGUF",
-      "base": "Decka-4B",
-      "author": "mradermacher",
-      "date": "2026-11-13",
-      "params_b": 4.0,
-      "is_distilled": true,
-      "quants": [
-        "IQ4_XS",
-        "Q2_K",
-        "Q3_K_L",
-        "Q3_K_M",
-        "Q3_K_S",
-        "Q4_K_M",
-        "Q4_K_S",
-        "Q5_K_M",
-        "Q5_K_S",
-        "Q6_K",
-        "Q8_0"
-      ],
-      "downloads": 488,
-      "tldr": "static quants of"
-    },
-    {
-      "id": "mradermacher/GuardReasoner-VL-Eco-3B-GGUF",
-      "base": "GuardReasoner-VL-Eco-3B",
-      "author": "mradermacher",
-      "date": "2026-11-13",
-      "params_b": 3.0,
-      "is_distilled": false,
-      "quants": [
-        "IQ4_XS",
-        "Q2_K",
-        "Q3_K_L",
-        "Q3_K_M",
-        "Q3_K_S",
-        "Q4_K_M",
-        "Q4_K_S",
-        "Q5_K_M",
-        "Q5_K_S",
-        "Q6_K",
-        "Q8_0"
-      ],
-      "downloads": 479,
-      "tldr": "static quants of"
-    },
-    {
-      "id": "mradermacher/WazoCore-8B-v6-long-i1-GGUF",
-      "base": "WazoCore-8B-v6-long-i1",
-      "author": "mradermacher",
-      "date": "2026-11-13",
-      "params_b": 8.0,
-      "is_distilled": false,
-      "quants": [
-        "IQ1_M",
-        "IQ1_S",
-        "IQ2_M",
-        "IQ2_S",
-        "IQ2_XS",
-        "IQ2_XXS",
-        "IQ3_M",
-        "IQ3_S",
-        "IQ3_XS",
-        "IQ3_XXS",
-        "IQ4_NL",
-        "IQ4_XS",
-        "Q2_K",
-        "Q2_K_S",
-        "Q3_K_L",
-        "Q3_K_M",
-        "Q3_K_S",
-        "Q4_0",
-        "Q4_1",
-        "Q4_K_M",
-        "Q4_K_S",
-        "Q5_K_M",
-        "Q5_K_S",
-        "Q6_K"
-      ],
-      "downloads": 3155,
-      "tldr": "weighted/imatrix quants of"
-    },
-    {
-      "id": "mradermacher/RefrigeratorAI-4B-v2-i1-GGUF",
-      "base": "RefrigeratorAI-4B-v2-i1",
-      "author": "mradermacher",
-      "date": "2026-11-13",
-      "params_b": 4.0,
-      "is_distilled": false,
-      "quants": [
-        "IQ1_M",
-        "IQ1_S",
-        "IQ2_M",
-        "IQ2_S",
-        "IQ2_XS",
-        "IQ2_XXS",
-        "IQ3_M",
-        "IQ3_S",
-        "IQ3_XS",
-        "IQ3_XXS",
-        "IQ4_NL",
-        "IQ4_XS",
-        "Q2_K",
-        "Q2_K_S",
-        "Q3_K_L",
-        "Q3_K_M",
-        "Q3_K_S",
-        "Q4_0",
-        "Q4_1",
-        "Q4_K_M",
-        "Q4_K_S",
-        "Q5_K_M",
-        "Q5_K_S",
-        "Q6_K"
-      ],
-      "downloads": 111,
-      "tldr": "weighted/imatrix quants of"
-    },
-    {
-      "id": "mradermacher/DeepSeek-R1-Distill-Qwen-25.5B-Brainstorm-GGUF",
-      "base": "DeepSeek-R1-Distill-Qwen-25.5B-Brainstorm",
-      "author": "mradermacher",
-      "date": "2026-11-13",
-      "params_b": 25.5,
-      "is_distilled": true,
-      "quants": [
-        "IQ4_XS",
-        "Q2_K",
-        "Q3_K_L",
-        "Q3_K_M",
-        "Q3_K_S",
-        "Q4_K_M",
-        "Q4_K_S",
-        "Q5_K_M",
-        "Q5_K_S",
-        "Q6_K",
-        "Q8_0"
-      ],
-      "downloads": 582,
-      "tldr": "static quants of"
-    },
-    {
-      "id": "mradermacher/rank1-32b-GGUF",
-      "base": "rank1-32b",
-      "author": "mradermacher",
-      "date": "2026-11-13",
-      "params_b": 32.0,
-      "is_distilled": false,
-      "quants": [
-        "IQ4_XS",
-        "Q2_K",
-        "Q3_K_L",
-        "Q3_K_M",
-        "Q3_K_S",
-        "Q4_K_M",
-        "Q4_K_S",
-        "Q5_K_M",
-        "Q5_K_S",
-        "Q6_K",
-        "Q8_0"
-      ],
-      "downloads": 108,
-      "tldr": "static quants of"
-    },
-    {
-      "id": "mradermacher/Apollo-70B-GGUF",
-      "base": "Apollo-70B",
-      "author": "mradermacher",
-      "date": "2026-11-13",
-      "params_b": 70.0,
-      "is_distilled": false,
-      "quants": [
-        "IQ4_XS",
-        "Q2_K",
-        "Q3_K_L",
-        "Q3_K_M",
-        "Q3_K_S",
-        "Q4_K_M",
-        "Q4_K_S",
-        "Q5_K_M",
-        "Q5_K_S"
-      ],
-      "downloads": 76,
-      "tldr": "static quants of"
-    },
-    {
-      "id": "mradermacher/NuExtract-2.0-2B-GGUF",
-      "base": "NuExtract-2.0-2B",
-      "author": "mradermacher",
-      "date": "2026-11-13",
-      "params_b": 2.0,
-      "is_distilled": false,
-      "quants": [
-        "IQ4_XS",
-        "Q2_K",
-        "Q3_K_L",
-        "Q3_K_M",
-        "Q3_K_S",
-        "Q4_K_M",
-        "Q4_K_S",
-        "Q5_K_M",
-        "Q5_K_S",
-        "Q6_K",
-        "Q8_0"
-      ],
-      "downloads": 304,
-      "tldr": "static quants of"
-    },
-    {
-      "id": "mradermacher/WazoCore-8B-v6-long-GGUF",
-      "base": "WazoCore-8B-v6-long",
-      "author": "mradermacher",
-      "date": "2026-11-13",
-      "params_b": 8.0,
-      "is_distilled": false,
-      "quants": [
-        "IQ4_XS",
-        "Q2_K",
-        "Q3_K_L",
-        "Q3_K_M",
-        "Q3_K_S",
-        "Q4_K_M",
-        "Q4_K_S",
-        "Q5_K_M",
-        "Q5_K_S",
-        "Q6_K",
-        "Q8_0"
-      ],
-      "downloads": 1243,
-      "tldr": "static quants of"
-    },
-    {
-      "id": "mradermacher/UL3.3-X-BASE-70B-GGUF",
-      "base": "UL3.3-X-BASE-70B",
-      "author": "mradermacher",
-      "date": "2026-11-13",
-      "params_b": 70.0,
-      "is_distilled": false,
-      "quants": [
-        "IQ4_XS",
-        "Q2_K",
-        "Q3_K_L",
-        "Q3_K_M",
-        "Q3_K_S",
-        "Q4_K_M",
-        "Q4_K_S",
-        "Q5_K_M",
-        "Q5_K_S"
-      ],
-      "downloads": 74,
-      "tldr": "static quants of"
-    },
-    {
-      "id": "mradermacher/glm-4-9b-hf-GGUF",
-      "base": "glm-4-9b-hf",
-      "author": "mradermacher",
-      "date": "2026-11-13",
-      "params_b": 9.0,
-      "is_distilled": false,
-      "quants": [
-        "IQ4_XS",
-        "Q2_K",
-        "Q3_K_L",
-        "Q3_K_M",
-        "Q3_K_S",
-        "Q4_K_M",
-        "Q4_K_S",
-        "Q5_K_M",
-        "Q5_K_S",
-        "Q6_K",
-        "Q8_0"
-      ],
-      "downloads": 141,
-      "tldr": "static quants of"
-    },
-    {
-      "id": "mradermacher/FrogNano-4B-2609-i1-GGUF",
-      "base": "FrogNano-4B-2609-i1",
-      "author": "mradermacher",
-      "date": "2026-11-13",
-      "params_b": 4.0,
-      "is_distilled": false,
-      "quants": [
-        "IQ3_M",
-        "IQ3_S",
-        "IQ4_NL",
-        "IQ4_XS",
-        "Q2_K",
-        "Q3_K_L",
-        "Q3_K_M",
-        "Q3_K_S",
-        "Q4_0",
-        "Q4_1",
-        "Q4_K_M",
-        "Q4_K_S",
-        "Q5_K_M",
-        "Q5_K_S",
-        "Q6_K"
-      ],
-      "downloads": 496,
-      "tldr": "weighted/imatrix quants of"
-    },
-    {
-      "id": "mradermacher/FrogNano-4B-2609-GGUF",
-      "base": "FrogNano-4B-2609",
-      "author": "mradermacher",
-      "date": "2026-11-13",
-      "params_b": 4.0,
-      "is_distilled": false,
-      "quants": [
-        "IQ4_XS",
-        "Q2_K",
-        "Q3_K_L",
-        "Q3_K_M",
-        "Q3_K_S",
-        "Q4_K_M",
-        "Q4_K_S",
-        "Q5_K_M",
-        "Q5_K_S",
-        "Q6_K",
-        "Q8_0"
-      ],
-      "downloads": 1152,
-      "tldr": "static quants of"
-    },
-    {
-      "id": "mradermacher/reasoning-llama-3.1-70b-stratos-cold-start-v2-GGUF",
-      "base": "reasoning-llama-3.1-70b-stratos-cold-start-v2",
-      "author": "mradermacher",
-      "date": "2026-11-13",
-      "params_b": 70.0,
-      "is_distilled": false,
-      "quants": [
-        "IQ4_XS",
-        "Q2_K",
-        "Q3_K_L",
-        "Q3_K_M",
-        "Q3_K_S",
-        "Q4_K_M",
-        "Q4_K_S",
-        "Q5_K_M",
-        "Q5_K_S"
-      ],
-      "downloads": 55,
-      "tldr": "static quants of"
-    },
-    {
-      "id": "mradermacher/MathSmith-HC-Qwen3-8B-Qwen2_5-32B-ShortCoT-GGUF",
-      "base": "MathSmith-HC-Qwen3-8B-Qwen2_5-32B-ShortCoT",
-      "author": "mradermacher",
-      "date": "2026-11-13",
-      "params_b": 32.0,
-      "is_distilled": false,
-      "quants": [
-        "IQ4_XS",
-        "Q2_K",
-        "Q3_K_L",
-        "Q3_K_M",
-        "Q3_K_S",
-        "Q4_K_M",
-        "Q4_K_S",
-        "Q5_K_M",
-        "Q5_K_S",
-        "Q6_K",
-        "Q8_0"
-      ],
-      "downloads": 210,
-      "tldr": "static quants of"
-    },
-    {
-      "id": "mradermacher/Impish_Bloodmoon_12B-i1-GGUF",
-      "base": "Impish_Bloodmoon_12B-i1",
-      "author": "mradermacher",
-      "date": "2026-11-13",
-      "params_b": 12.0,
-      "is_distilled": false,
-      "quants": [
-        "IQ1_M",
-        "IQ1_S",
-        "IQ2_M",
-        "IQ2_S",
-        "IQ2_XS",
-        "IQ2_XXS",
-        "IQ3_M",
-        "IQ3_S",
-        "IQ3_XS",
-        "IQ3_XXS",
-        "IQ4_NL",
-        "IQ4_XS",
-        "Q2_K",
-        "Q2_K_S",
-        "Q3_K_L",
-        "Q3_K_M",
-        "Q3_K_S",
-        "Q4_0",
-        "Q4_1",
-        "Q4_K_M",
-        "Q4_K_S",
-        "Q5_K_M",
-        "Q5_K_S",
-        "Q6_K"
-      ],
-      "downloads": 1232,
-      "tldr": "weighted/imatrix quants of"
-    },
-    {
-      "id": "mradermacher/vicuna-13b-free-GGUF",
-      "base": "vicuna-13b-free",
-      "author": "mradermacher",
-      "date": "2026-11-13",
-      "params_b": 13.0,
-      "is_distilled": false,
-      "quants": [
-        "IQ4_XS",
-        "Q2_K",
-        "Q3_K_L",
-        "Q3_K_M",
-        "Q3_K_S",
-        "Q4_K_M",
-        "Q4_K_S",
-        "Q5_K_M",
-        "Q5_K_S",
-        "Q6_K",
-        "Q8_0"
-      ],
-      "downloads": 112,
-      "tldr": "static quants of"
-    },
-    {
-      "id": "mradermacher/Qwen3-Jan-v1-256k-ctx-6B-Brainstorm20x-GGUF",
-      "base": "Qwen3-Jan-v1-256k-ctx-6B-Brainstorm20x",
-      "author": "mradermacher",
-      "date": "2026-11-13",
-      "params_b": 6.0,
-      "is_distilled": false,
-      "quants": [
-        "IQ4_XS",
-        "Q2_K",
-        "Q3_K_L",
-        "Q3_K_M",
-        "Q3_K_S",
-        "Q4_K_M",
-        "Q4_K_S",
-        "Q5_K_M",
-        "Q5_K_S",
-        "Q6_K",
-        "Q8_0"
-      ],
-      "downloads": 389,
-      "tldr": "static quants of"
-    },
-    {
-      "id": "mradermacher/llama-3-8b-openemis-bot-GGUF",
-      "base": "llama-3-8b-openemis-bot",
-      "author": "mradermacher",
-      "date": "2026-11-13",
-      "params_b": 8.0,
-      "is_distilled": false,
-      "quants": [
-        "IQ4_XS",
-        "Q2_K",
-        "Q3_K_L",
-        "Q3_K_M",
-        "Q3_K_S",
-        "Q4_K_M",
-        "Q4_K_S",
-        "Q5_K_M",
-        "Q5_K_S",
-        "Q6_K",
-        "Q8_0"
-      ],
-      "downloads": 72,
-      "tldr": "static quants of"
-    },
-    {
-      "id": "mradermacher/RpR-v4-Fast-30B-A3B-GGUF",
-      "base": "RpR-v4-Fast-30B-A3B",
-      "author": "mradermacher",
-      "date": "2026-11-13",
+      "date": "2026-11-14",
       "params_b": 30.0,
       "is_distilled": false,
       "quants": [
@@ -807,15 +536,15 @@
         "Q6_K",
         "Q8_0"
       ],
-      "downloads": 137,
+      "downloads": 151,
       "tldr": "static quants of"
     },
     {
-      "id": "mradermacher/Qwen2.5-VL-7B-MM-UPT-MMR1-GGUF",
-      "base": "Qwen2.5-VL-7B-MM-UPT-MMR1",
+      "id": "mradermacher/based-13b-GGUF",
+      "base": "based-13b",
       "author": "mradermacher",
-      "date": "2026-11-13",
-      "params_b": 7.0,
+      "date": "2026-11-14",
+      "params_b": 13.0,
       "is_distilled": false,
       "quants": [
         "IQ4_XS",
@@ -830,19 +559,20 @@
         "Q6_K",
         "Q8_0"
       ],
-      "downloads": 475,
+      "downloads": 213,
       "tldr": "static quants of"
     },
     {
-      "id": "mradermacher/Qwensploit-V2-27B-CyberSecurity-Qwen3.8-i1-GGUF",
-      "base": "Qwensploit-V2-27B-CyberSecurity-Qwen3.8-i1",
+      "id": "mradermacher/DeepSeek-V4-Pro-Qwen3.5-4B-UNCENSORED-heretic-i1-GGUF",
+      "base": "DeepSeek-V4-Pro-Qwen3.5-4B-UNCENSORED-heretic-i1",
       "author": "mradermacher",
-      "date": "2026-11-13",
-      "params_b": 27.0,
+      "date": "2026-11-14",
+      "params_b": 4.0,
       "is_distilled": true,
       "quants": [
         "IQ3_M",
         "IQ3_S",
+        "IQ4_NL",
         "IQ4_XS",
         "Q2_K",
         "Q3_K_L",
@@ -856,14 +586,14 @@
         "Q5_K_S",
         "Q6_K"
       ],
-      "downloads": 102,
+      "downloads": 9749,
       "tldr": "weighted/imatrix quants of"
     },
     {
-      "id": "mradermacher/NeuralExperiment-7b-Coding_FT3-GGUF",
-      "base": "NeuralExperiment-7b-Coding_FT3",
+      "id": "mradermacher/Beagle14-7B-GGUF",
+      "base": "Beagle14-7B",
       "author": "mradermacher",
-      "date": "2026-11-13",
+      "date": "2026-11-14",
       "params_b": 7.0,
       "is_distilled": false,
       "quants": [
@@ -879,16 +609,159 @@
         "Q6_K",
         "Q8_0"
       ],
-      "downloads": 104,
+      "downloads": 687,
       "tldr": "static quants of"
     },
     {
-      "id": "mradermacher/Omega-Darkest_The-Broken-Tutu-GLM-32B-GGUF",
-      "base": "Omega-Darkest_The-Broken-Tutu-GLM-32B",
+      "id": "mradermacher/Gemma-3-Earthen-Completion-v0.1-4B-GGUF",
+      "base": "Gemma-3-Earthen-Completion-v0.1-4B",
       "author": "mradermacher",
-      "date": "2026-11-13",
+      "date": "2026-11-14",
+      "params_b": 4.0,
+      "is_distilled": false,
+      "quants": [
+        "IQ4_XS",
+        "Q2_K",
+        "Q3_K_L",
+        "Q3_K_M",
+        "Q3_K_S",
+        "Q4_K_M",
+        "Q4_K_S",
+        "Q5_K_M",
+        "Q5_K_S",
+        "Q6_K",
+        "Q8_0"
+      ],
+      "downloads": 423,
+      "tldr": "static quants of"
+    },
+    {
+      "id": "mradermacher/1.5B-v18-GGUF",
+      "base": "1.5B-v18",
+      "author": "mradermacher",
+      "date": "2026-11-14",
+      "params_b": 1.5,
+      "is_distilled": false,
+      "quants": [
+        "IQ4_XS",
+        "Q2_K",
+        "Q3_K_L",
+        "Q3_K_M",
+        "Q3_K_S",
+        "Q4_K_M",
+        "Q4_K_S",
+        "Q5_K_M",
+        "Q5_K_S",
+        "Q6_K",
+        "Q8_0"
+      ],
+      "downloads": 98,
+      "tldr": "static quants of"
+    },
+    {
+      "id": "mradermacher/Evidence-RL-9B-i1-GGUF",
+      "base": "Evidence-RL-9B-i1",
+      "author": "mradermacher",
+      "date": "2026-11-14",
+      "params_b": 9.0,
+      "is_distilled": false,
+      "quants": [
+        "IQ1_M",
+        "IQ1_S",
+        "IQ2_M",
+        "IQ2_S",
+        "IQ2_XS",
+        "IQ2_XXS",
+        "IQ3_M",
+        "IQ3_S",
+        "IQ3_XS",
+        "IQ3_XXS",
+        "IQ4_NL",
+        "IQ4_XS",
+        "Q2_K",
+        "Q2_K_S",
+        "Q3_K_L",
+        "Q3_K_M",
+        "Q3_K_S",
+        "Q4_0",
+        "Q4_1",
+        "Q4_K_M",
+        "Q4_K_S",
+        "Q5_K_M",
+        "Q5_K_S",
+        "Q6_K"
+      ],
+      "downloads": 640,
+      "tldr": "weighted/imatrix quants of"
+    },
+    {
+      "id": "mradermacher/FineTuned-Meta-Llama-4-Scout-17B-16E-Instruct-GGUF",
+      "base": "FineTuned-Meta-Llama-4-Scout-17B-16E-Instruct",
+      "author": "mradermacher",
+      "date": "2026-11-14",
+      "params_b": 17.0,
+      "is_distilled": false,
+      "quants": [
+        "Q2_K",
+        "Q3_K_S",
+        "Q8_0"
+      ],
+      "downloads": 59,
+      "tldr": "static quants of"
+    },
+    {
+      "id": "mradermacher/Elpis-VL-7B-GGUF",
+      "base": "Elpis-VL-7B",
+      "author": "mradermacher",
+      "date": "2026-11-14",
+      "params_b": 7.0,
+      "is_distilled": false,
+      "quants": [
+        "IQ4_XS",
+        "Q2_K",
+        "Q3_K_L",
+        "Q3_K_M",
+        "Q3_K_S",
+        "Q4_K_M",
+        "Q4_K_S",
+        "Q5_K_M",
+        "Q5_K_S",
+        "Q6_K",
+        "Q8_0"
+      ],
+      "downloads": 83,
+      "tldr": "static quants of"
+    },
+    {
+      "id": "mradermacher/CyberQwen-14B-Security-GGUF",
+      "base": "CyberQwen-14B-Security",
+      "author": "mradermacher",
+      "date": "2026-11-14",
+      "params_b": 14.0,
+      "is_distilled": false,
+      "quants": [
+        "IQ4_XS",
+        "Q2_K",
+        "Q3_K_L",
+        "Q3_K_M",
+        "Q3_K_S",
+        "Q4_K_M",
+        "Q4_K_S",
+        "Q5_K_M",
+        "Q5_K_S",
+        "Q6_K",
+        "Q8_0"
+      ],
+      "downloads": 942,
+      "tldr": "static quants of"
+    },
+    {
+      "id": "mradermacher/Qwen2.5-QwQ-32B-Four-Banger-GGUF",
+      "base": "Qwen2.5-QwQ-32B-Four-Banger",
+      "author": "mradermacher",
+      "date": "2026-11-14",
       "params_b": 32.0,
-      "is_distilled": false,
+      "is_distilled": true,
       "quants": [
         "IQ4_XS",
         "Q2_K",
@@ -902,38 +775,15 @@
         "Q6_K",
         "Q8_0"
       ],
-      "downloads": 271,
+      "downloads": 495,
       "tldr": "static quants of"
     },
     {
-      "id": "mradermacher/Qwen2-Audio-7B-Instruct-Ultrasuite-GGUF",
-      "base": "Qwen2-Audio-7B-Instruct-Ultrasuite",
+      "id": "mradermacher/alpaca-13b-GGUF",
+      "base": "alpaca-13b",
       "author": "mradermacher",
-      "date": "2026-11-13",
-      "params_b": 7.0,
-      "is_distilled": false,
-      "quants": [
-        "IQ4_XS",
-        "Q2_K",
-        "Q3_K_L",
-        "Q3_K_M",
-        "Q3_K_S",
-        "Q4_K_M",
-        "Q4_K_S",
-        "Q5_K_M",
-        "Q5_K_S",
-        "Q6_K",
-        "Q8_0"
-      ],
-      "downloads": 157,
-      "tldr": "static quants of"
-    },
-    {
-      "id": "mradermacher/LLMBG-ToolUse-27B-v1.0-GGUF",
-      "base": "LLMBG-ToolUse-27B-v1.0",
-      "author": "mradermacher",
-      "date": "2026-11-13",
-      "params_b": 27.0,
+      "date": "2026-11-14",
+      "params_b": 13.0,
       "is_distilled": false,
       "quants": [
         "IQ4_XS",
@@ -952,11 +802,11 @@
       "tldr": "static quants of"
     },
     {
-      "id": "mradermacher/grounding-r1-72B-GGUF",
-      "base": "grounding-r1-72B",
+      "id": "mradermacher/Gemma-2-Ataraxy-Remix-9B-GGUF",
+      "base": "Gemma-2-Ataraxy-Remix-9B",
       "author": "mradermacher",
-      "date": "2026-11-13",
-      "params_b": 72.0,
+      "date": "2026-11-14",
+      "params_b": 9.0,
       "is_distilled": false,
       "quants": [
         "IQ4_XS",
@@ -966,10 +816,164 @@
         "Q3_K_S",
         "Q4_K_M",
         "Q4_K_S",
+        "Q5_K_M",
+        "Q5_K_S",
+        "Q6_K",
         "Q8_0"
       ],
-      "downloads": 306,
+      "downloads": 56,
       "tldr": "static quants of"
+    },
+    {
+      "id": "mradermacher/JEV-9B-GGUF",
+      "base": "JEV-9B",
+      "author": "mradermacher",
+      "date": "2026-11-14",
+      "params_b": 9.0,
+      "is_distilled": true,
+      "quants": [
+        "IQ4_XS",
+        "Q2_K",
+        "Q3_K_L",
+        "Q3_K_M",
+        "Q3_K_S",
+        "Q4_K_M",
+        "Q4_K_S",
+        "Q5_K_M",
+        "Q5_K_S",
+        "Q6_K",
+        "Q8_0"
+      ],
+      "downloads": 1257,
+      "tldr": "static quants of"
+    },
+    {
+      "id": "mradermacher/Evidence-RL-9B-GGUF",
+      "base": "Evidence-RL-9B",
+      "author": "mradermacher",
+      "date": "2026-11-14",
+      "params_b": 9.0,
+      "is_distilled": false,
+      "quants": [
+        "IQ4_XS",
+        "Q2_K",
+        "Q3_K_L",
+        "Q3_K_M",
+        "Q3_K_S",
+        "Q4_K_M",
+        "Q4_K_S",
+        "Q5_K_M",
+        "Q5_K_S",
+        "Q6_K",
+        "Q8_0"
+      ],
+      "downloads": 351,
+      "tldr": "static quants of"
+    },
+    {
+      "id": "mradermacher/Seed-OSS-36B-Instruct-GGUF",
+      "base": "Seed-OSS-36B-Instruct",
+      "author": "mradermacher",
+      "date": "2026-11-14",
+      "params_b": 36.0,
+      "is_distilled": false,
+      "quants": [
+        "IQ4_XS",
+        "Q2_K",
+        "Q3_K_L",
+        "Q3_K_M",
+        "Q3_K_S",
+        "Q4_K_M",
+        "Q4_K_S",
+        "Q5_K_M",
+        "Q5_K_S",
+        "Q6_K",
+        "Q8_0"
+      ],
+      "downloads": 381,
+      "tldr": "static quants of"
+    },
+    {
+      "id": "mradermacher/Azura-Qwen2.5-32B-GGUF",
+      "base": "Azura-Qwen2.5-32B",
+      "author": "mradermacher",
+      "date": "2026-11-14",
+      "params_b": 32.0,
+      "is_distilled": false,
+      "quants": [
+        "IQ4_XS",
+        "Q2_K",
+        "Q3_K_L",
+        "Q3_K_M",
+        "Q3_K_S",
+        "Q4_K_M",
+        "Q4_K_S",
+        "Q5_K_M",
+        "Q5_K_S",
+        "Q6_K",
+        "Q8_0"
+      ],
+      "downloads": 82,
+      "tldr": "static quants of"
+    },
+    {
+      "id": "mradermacher/OmniSQL-7B-GGUF",
+      "base": "OmniSQL-7B",
+      "author": "mradermacher",
+      "date": "2026-11-14",
+      "params_b": 7.0,
+      "is_distilled": false,
+      "quants": [
+        "IQ4_XS",
+        "Q2_K",
+        "Q3_K_L",
+        "Q3_K_M",
+        "Q3_K_S",
+        "Q4_K_M",
+        "Q4_K_S",
+        "Q5_K_M",
+        "Q5_K_S",
+        "Q6_K",
+        "Q8_0"
+      ],
+      "downloads": 1345,
+      "tldr": "static quants of"
+    },
+    {
+      "id": "bartowski/xtools-at_Qwensploit-V2-27B-CyberSecurity-Qwen3.8-GGUF",
+      "base": "xtools-at_Qwensploit-V2-27B-CyberSecurity-Qwen3.8",
+      "author": "bartowski",
+      "date": "2026-11-13",
+      "params_b": 27.0,
+      "is_distilled": true,
+      "quants": [
+        "IQ2_M",
+        "IQ2_S",
+        "IQ2_XS",
+        "IQ2_XXS",
+        "IQ3_M",
+        "IQ3_XS",
+        "IQ3_XXS",
+        "IQ4_NL",
+        "IQ4_XS",
+        "Q2_K",
+        "Q3_K_L",
+        "Q3_K_M",
+        "Q3_K_S",
+        "Q4_0",
+        "Q4_1",
+        "Q4_K_L",
+        "Q4_K_M",
+        "Q4_K_S",
+        "Q5_K_M",
+        "Q5_K_S",
+        "Q6_K",
+        "Q6_K_L",
+        "Q6_K_S",
+        "Q8_0"
+      ],
+      "downloads": 2264,
+      "tldr": "Using <a href=\" release <a href=\" for quantization."
     },
     {
       "id": "bartowski/Danielbrdz_Barcenas-LFM3-1.7B-GGUF",
@@ -1001,7 +1005,7 @@
         "Q6_K_S",
         "Q8_0"
       ],
-      "downloads": 536,
+      "downloads": 1732,
       "tldr": "Using <a href=\" release <a href=\" for quantization."
     },
     {
@@ -1034,7 +1038,7 @@
         "Q6_K_S",
         "Q8_0"
       ],
-      "downloads": 1941,
+      "downloads": 3541,
       "tldr": "Using <a href=\" release <a href=\" for quantization."
     },
     {
@@ -1067,7 +1071,7 @@
         "Q6_K_S",
         "Q8_0"
       ],
-      "downloads": 1561,
+      "downloads": 3432,
       "tldr": "Using <a href=\" release <a href=\" for quantization."
     },
     {
@@ -1100,7 +1104,7 @@
         "Q6_K_S",
         "Q8_0"
       ],
-      "downloads": 1284,
+      "downloads": 2678,
       "tldr": "Using <a href=\" release <a href=\" for quantization."
     },
     {
@@ -1133,7 +1137,7 @@
         "Q6_K_S",
         "Q8_0"
       ],
-      "downloads": 1713,
+      "downloads": 2920,
       "tldr": "Using <a href=\" release <a href=\" for quantization."
     },
     {
@@ -1168,7 +1172,7 @@
         "Q6_K_S",
         "Q8_0"
       ],
-      "downloads": 3624,
+      "downloads": 4771,
       "tldr": "Using <a href=\" release <a href=\" for quantization."
     },
     {
@@ -1201,7 +1205,7 @@
         "Q6_K_S",
         "Q8_0"
       ],
-      "downloads": 1823,
+      "downloads": 1969,
       "tldr": "Using <a href=\" release <a href=\" for quantization."
     },
     {
@@ -1237,7 +1241,7 @@
         "Q6_K_S",
         "Q8_0"
       ],
-      "downloads": 4591,
+      "downloads": 4738,
       "tldr": "Using <a href=\" release <a href=\" for quantization."
     },
     {
@@ -1273,7 +1277,7 @@
         "Q6_K_S",
         "Q8_0"
       ],
-      "downloads": 5293,
+      "downloads": 5685,
       "tldr": "Using <a href=\" release <a href=\" for quantization."
     },
     {
@@ -1309,7 +1313,7 @@
         "Q6_K_S",
         "Q8_0"
       ],
-      "downloads": 68180,
+      "downloads": 71811,
       "tldr": "Using <a href=\" release <a href=\" for quantization."
     },
     {
@@ -1345,7 +1349,7 @@
         "Q6_K_S",
         "Q8_0"
       ],
-      "downloads": 1417,
+      "downloads": 1432,
       "tldr": "Using <a href=\" release <a href=\" for quantization."
     },
     {
@@ -1381,7 +1385,7 @@
         "Q6_K_S",
         "Q8_0"
       ],
-      "downloads": 4308,
+      "downloads": 4581,
       "tldr": "Using <a href=\" release <a href=\" for quantization."
     },
     {
@@ -1414,7 +1418,7 @@
         "Q6_K_S",
         "Q8_0"
       ],
-      "downloads": 1665,
+      "downloads": 1690,
       "tldr": "Using <a href=\" release <a href=\" for quantization."
     },
     {
@@ -1447,7 +1451,7 @@
         "Q6_K_S",
         "Q8_0"
       ],
-      "downloads": 1330,
+      "downloads": 1338,
       "tldr": "Using <a href=\" release <a href=\" for quantization."
     },
     {
@@ -1483,7 +1487,7 @@
         "Q6_K_S",
         "Q8_0"
       ],
-      "downloads": 1431,
+      "downloads": 1456,
       "tldr": "Using <a href=\" release <a href=\" for quantization."
     },
     {
@@ -1519,7 +1523,7 @@
         "Q6_K_S",
         "Q8_0"
       ],
-      "downloads": 9666,
+      "downloads": 9835,
       "tldr": "Using <a href=\" release <a href=\" for quantization."
     },
     {
@@ -1552,7 +1556,7 @@
         "Q6_K_S",
         "Q8_0"
       ],
-      "downloads": 2279,
+      "downloads": 2284,
       "tldr": "Using <a href=\" release <a href=\" for quantization."
     },
     {
@@ -1585,7 +1589,7 @@
         "Q6_K_S",
         "Q8_0"
       ],
-      "downloads": 1091,
+      "downloads": 1108,
       "tldr": "Using <a href=\" release <a href=\" for quantization."
     },
     {
@@ -1618,7 +1622,7 @@
         "Q6_K_S",
         "Q8_0"
       ],
-      "downloads": 3686,
+      "downloads": 3813,
       "tldr": "Using <a href=\" release <a href=\" for quantization."
     },
     {
@@ -1651,7 +1655,7 @@
         "Q6_K_S",
         "Q8_0"
       ],
-      "downloads": 962,
+      "downloads": 980,
       "tldr": "Using <a href=\" release <a href=\" for quantization."
     },
     {
@@ -1687,7 +1691,7 @@
         "Q6_K_S",
         "Q8_0"
       ],
-      "downloads": 9524,
+      "downloads": 9611,
       "tldr": "Using <a href=\" release <a href=\" for quantization."
     },
     {
@@ -1720,7 +1724,7 @@
         "Q6_K_S",
         "Q8_0"
       ],
-      "downloads": 3765,
+      "downloads": 3918,
       "tldr": "Using <a href=\" release <a href=\" for quantization."
     },
     {
@@ -1753,7 +1757,7 @@
         "Q6_K_S",
         "Q8_0"
       ],
-      "downloads": 5295,
+      "downloads": 5336,
       "tldr": "Using <a href=\" release <a href=\" for quantization."
     },
     {
@@ -1786,7 +1790,7 @@
         "Q6_K_S",
         "Q8_0"
       ],
-      "downloads": 1552,
+      "downloads": 1560,
       "tldr": "Using <a href=\" release <a href=\" for quantization."
     },
     {
@@ -1822,7 +1826,7 @@
         "Q6_K_S",
         "Q8_0"
       ],
-      "downloads": 10106,
+      "downloads": 10145,
       "tldr": "Using <a href=\" release <a href=\" for quantization."
     },
     {
@@ -1855,7 +1859,7 @@
         "Q6_K_S",
         "Q8_0"
       ],
-      "downloads": 3783,
+      "downloads": 3816,
       "tldr": "Using <a href=\" release <a href=\" for quantization."
     },
     {
@@ -1888,7 +1892,7 @@
         "Q6_K_S",
         "Q8_0"
       ],
-      "downloads": 9531,
+      "downloads": 9773,
       "tldr": "Using <a href=\" release <a href=\" for quantization."
     },
     {
@@ -1921,7 +1925,7 @@
         "Q6_K_S",
         "Q8_0"
       ],
-      "downloads": 2986,
+      "downloads": 3025,
       "tldr": "Using <a href=\" release <a href=\" for quantization."
     },
     {
@@ -1957,7 +1961,7 @@
         "Q6_K_S",
         "Q8_0"
       ],
-      "downloads": 4456,
+      "downloads": 4772,
       "tldr": "Using <a href=\" release <a href=\" for quantization."
     },
     {
@@ -1991,7 +1995,7 @@
         "Q6_K_S",
         "Q8_0"
       ],
-      "downloads": 7001,
+      "downloads": 7226,
       "tldr": "Using <a href=\" release <a href=\" for quantization."
     },
     {
@@ -2006,7 +2010,7 @@
         "Q6_K",
         "Q8_0"
       ],
-      "downloads": 7863,
+      "downloads": 8050,
       "tldr": "👾 LM Studio Community models highlights program. Highlighting new & noteworthy models by the community. Join the conversation on Discord."
     },
     {
@@ -2021,7 +2025,7 @@
         "Q6_K",
         "Q8_0"
       ],
-      "downloads": 15224,
+      "downloads": 15989,
       "tldr": "👾 LM Studio Community models highlights program. Highlighting new & noteworthy models by the community. Join the conversation on Discord."
     },
     {
@@ -2057,7 +2061,7 @@
         "Q6_K_S",
         "Q8_0"
       ],
-      "downloads": 4611,
+      "downloads": 4903,
       "tldr": "Using <a href=\" release <a href=\" for quantization."
     },
     {
@@ -2090,7 +2094,7 @@
         "Q6_K_S",
         "Q8_0"
       ],
-      "downloads": 7774,
+      "downloads": 7973,
       "tldr": "Using <a href=\" release <a href=\" for quantization."
     },
     {
@@ -2126,7 +2130,7 @@
         "Q6_K_S",
         "Q8_0"
       ],
-      "downloads": 153485,
+      "downloads": 155759,
       "tldr": "Using <a href=\" release <a href=\" for quantization."
     },
     {
@@ -2160,7 +2164,7 @@
         "Q6_K_S",
         "Q8_0"
       ],
-      "downloads": 15069,
+      "downloads": 15327,
       "tldr": "Using <a href=\" release <a href=\" for quantization."
     },
     {
@@ -2194,7 +2198,7 @@
         "Q6_K_L",
         "Q8_0"
       ],
-      "downloads": 5107,
+      "downloads": 5132,
       "tldr": "Using <a href=\" release <a href=\" for quantization."
     },
     {
@@ -2227,7 +2231,7 @@
         "Q6_K_S",
         "Q8_0"
       ],
-      "downloads": 9520,
+      "downloads": 9668,
       "tldr": "Using <a href=\" release <a href=\" for quantization."
     },
     {
@@ -2263,7 +2267,7 @@
         "Q6_K_S",
         "Q8_0"
       ],
-      "downloads": 10844,
+      "downloads": 10913,
       "tldr": "Using <a href=\" release <a href=\" for quantization."
     },
     {
@@ -2299,7 +2303,7 @@
         "Q6_K_S",
         "Q8_0"
       ],
-      "downloads": 3653,
+      "downloads": 3661,
       "tldr": "Using <a href=\" release <a href=\" for quantization."
     },
     {
@@ -2334,41 +2338,7 @@
         "Q6_K_S",
         "Q8_0"
       ],
-      "downloads": 14390,
-      "tldr": "Using <a href=\" release <a href=\" for quantization."
-    },
-    {
-      "id": "bartowski/bottlecapai_ThinkingCap-gemma-4-26B-A4B-it-GGUF",
-      "base": "bottlecapai_ThinkingCap-gemma-4-26B-A4B-it",
-      "author": "bartowski",
-      "date": "2026-10-23",
-      "params_b": 26.0,
-      "is_distilled": false,
-      "quants": [
-        "IQ2_M",
-        "IQ2_S",
-        "IQ2_XS",
-        "IQ3_XS",
-        "IQ3_XXS",
-        "IQ4_NL",
-        "IQ4_XS",
-        "Q2_K",
-        "Q3_K_L",
-        "Q3_K_M",
-        "Q3_K_S",
-        "Q4_0",
-        "Q4_1",
-        "Q4_K_L",
-        "Q4_K_M",
-        "Q4_K_S",
-        "Q5_K_M",
-        "Q5_K_S",
-        "Q6_K",
-        "Q6_K_L",
-        "Q6_K_S",
-        "Q8_0"
-      ],
-      "downloads": 7975,
+      "downloads": 12963,
       "tldr": "Using <a href=\" release <a href=\" for quantization."
     },
     {
@@ -2379,7 +2349,7 @@
       "params_b": 4.0,
       "is_distilled": false,
       "quants": [],
-      "downloads": 1319,
+      "downloads": 1365,
       "tldr": "👾 LM Studio Community models highlights program. Highlighting new & noteworthy models by the community. Join the conversation on Discord."
     },
     {
@@ -2394,29 +2364,7 @@
         "Q6_K",
         "Q8_0"
       ],
-      "downloads": 3450,
-      "tldr": "👾 LM Studio Community models highlights program. Highlighting new & noteworthy models by the community. Join the conversation on Discord."
-    },
-    {
-      "id": "lmstudio-community/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-LiLiCorr-GGUF",
-      "base": "NVIDIA-Nemotron-3.5-Bolt-74B-A9B-LiLiCorr",
-      "author": "lmstudio-community",
-      "date": "2026-10-15",
-      "params_b": 74.0,
-      "is_distilled": false,
-      "quants": [],
-      "downloads": 1153,
-      "tldr": "👾 LM Studio Community models highlights program. Highlighting new & noteworthy models by the community. Join the conversation on Discord."
-    },
-    {
-      "id": "lmstudio-community/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-NVFP4-LiLiCorr-GGUF",
-      "base": "NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-NVFP4-LiLiCorr",
-      "author": "lmstudio-community",
-      "date": "2026-10-15",
-      "params_b": 120.0,
-      "is_distilled": false,
-      "quants": [],
-      "downloads": 694,
+      "downloads": 3522,
       "tldr": "👾 LM Studio Community models highlights program. Highlighting new & noteworthy models by the community. Join the conversation on Discord."
     }
   ]
